@@ -28,14 +28,14 @@ const PlayerErrorPopup = ({
 				data-popup-focus-scope="true"
 				className={`${popupStyles.popupSurface} ${css.errorPopupContent} bf-error-surface`}
 			>
-				<BodyText className={`${css.popupTitle} bf-error-title`}>Playback Error</BodyText>
+				<BodyText className={`${css.popupTitle} bf-error-title`}>播放错误</BodyText>
 				<BodyText className={`${css.errorMessage} bf-error-message`}>{error}</BodyText>
 				<div className={`${css.errorActions} bf-error-actions`}>
 					<Button onClick={onRetry} className={`${css.errorActionButton} bf-error-action-button`}>
-						Retry
+						重试
 					</Button>
 					<Button onClick={onBack} className={`${css.errorActionButton} bf-error-action-button`}>
-						Go Back
+						返回
 					</Button>
 				</div>
 			</div>

@@ -452,7 +452,7 @@ const HomePanel = ({
 									: SERVER_HOME_ROW_STATUS.ERROR),
 							error: available ? null : {
 								reason: diagnosticReason,
-								message: response?.message || error?.message || 'This Home section could not be loaded.'
+								message: response?.message || error?.message || '无法加载此主页分区。'
 							}
 						}
 						: entry
@@ -485,7 +485,7 @@ const HomePanel = ({
 			if (batchId !== serverHomeLoadBatchIdRef.current) return;
 			reportHomeSectionsDiagnostic('lazy-row-load', {
 				available: false,
-				errorName: error?.name || 'Error',
+				errorName: error?.name || '错误',
 				message: String(error?.message || 'Home section row request failed').slice(0, 240)
 			});
 		});
@@ -626,13 +626,13 @@ const HomePanel = ({
 
 	const visibleRows = useMemo(() => {
 		const rowConfig = {
-			recentlyAdded: {title: 'Recently Added', items: recentlyAdded, showEpisodeProgress: false},
-			continueWatching: {title: 'Continue Watching', items: continueWatching, showEpisodeProgress: false},
-			nextUp: {title: 'Next Up', items: nextUp, showEpisodeProgress: false},
-			latestMovies: {title: 'Latest Movies', items: latestMovies, showEpisodeProgress: false},
-			latestShows: {title: 'Latest TV Shows', items: latestShows, showEpisodeProgress: false},
-			myRequests: {title: 'My Requests', items: myRequests, showEpisodeProgress: true},
-			watchlist: {title: 'Watchlist', items: watchlist, showEpisodeProgress: false}
+			recentlyAdded: {title: '最近添加', items: recentlyAdded, showEpisodeProgress: false},
+			continueWatching: {title: '继续观看', items: continueWatching, showEpisodeProgress: false},
+			nextUp: {title: '接下来播放', items: nextUp, showEpisodeProgress: false},
+			latestMovies: {title: '最新电影', items: latestMovies, showEpisodeProgress: false},
+			latestShows: {title: '最新电视剧', items: latestShows, showEpisodeProgress: false},
+			myRequests: {title: '我的请求', items: myRequests, showEpisodeProgress: true},
+			watchlist: {title: '关注列表', items: watchlist, showEpisodeProgress: false}
 		};
 		const rowIsEnabled = (key) => (
 			key === 'watchlist' ? integrationPreferences.watchlistEnabled : homeRowSettings[key]
@@ -781,7 +781,7 @@ const HomePanel = ({
 			<ProviderItemPopup
 				open={externalItemOpen}
 				title={externalItem?.Name || 'Discovery'}
-				detail={externalItem?.Overview || 'No overview is available.'}
+				detail={externalItem?.Overview || '暂无简介。'}
 				item={externalItem}
 				onClose={closeExternalItem}
 				onHide={clearExternalItem}

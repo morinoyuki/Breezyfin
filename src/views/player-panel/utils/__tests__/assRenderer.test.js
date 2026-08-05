@@ -84,4 +84,69 @@ describe('assRenderer', () => {
 		});
 	});
 
+	it('uses the bundled Noto Sans SC as the libass fallback font', () => {
+		// The previous setup routed the fallback font to a Latin-only
+		// TTF, which meant any ASS [V4+ Styles] entry referencing a
+		// font name not in `availableFonts` (including the common
+		// `Arial` default) silently produced tofu boxes for Chinese /
+		// Japanese / Korean text. Noto Sans SC is a pan-CJK font that
+		// also ships a Latin subset, so promoting it to the fallback
+		// role resolves the unmapped-font-name path for both Latin
+		// and CJK content.
+		const {fallbackFont, availableFonts} = buildAssRendererOptions({
+			video: document.createElement('video'),
+			subContent: '[Script Info]'
+		});
+
+		expect(fallbackFont).toBe('breezyfin-subtitle-cjk.otf');
+		expect(availableFonts.arial).toBeUndefined();
+		expect(availableFonts['sans-serif']).toBeUndefined();
+	});
+
+	it('still routes explicit CJK font names from ASS files to Noto Sans SC', () => {
+		const {availableFonts} = buildAssRendererOptions({
+			video: document.createElement('video'),
+			subContent: '[Script Info]'
+		});
+		const expectedCjkAliases = [
+			'noto sans sc',
+			'noto sans cjk sc',
+			'noto sans cjk',
+			'noto sans cjk tc',
+			'noto sans cjk jp',
+			'noto sans cjk kr',
+			'source han sans cn',
+			'source han sans sc',
+			'source han sans tc',
+			'source han serif sc',
+			'microsoft yahei',
+			'microsoft yahei ui',
+			'microsoft jhenghei',
+			'microsoft jhenghei ui',
+			'simhei',
+			'simsun',
+			'simkai',
+			'simfang',
+			'kaiti',
+			'songti',
+			'fangsong',
+			'pingfang sc',
+			'pingfang tc',
+			'pingfang',
+			'hiragino sans gb',
+			'stheiti',
+			'stsong',
+			'stkaiti',
+			'pmingliu',
+			'mingliu',
+			'dfkai-sb',
+			'droid sans fallback',
+			'wenquanyi micro hei',
+			'hyqihei',
+			'dengxian'
+		];
+		expectedCjkAliases.forEach((alias) => {
+			expect(availableFonts[alias]).toBe('breezyfin-subtitle-cjk.otf');
+		});
+	});
 });

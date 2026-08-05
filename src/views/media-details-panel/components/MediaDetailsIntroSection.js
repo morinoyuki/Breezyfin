@@ -84,7 +84,7 @@ const MediaDetailsIntroSection = ({
 						onKeyDown={onIntroTopNavKeyDown}
 						onKeyDownCapture={onIntroTopNavKeyDown}
 						className={css.detailsBackButton}
-						aria-label="Back"
+						aria-label="返回"
 						data-bf-md-nav="back"
 					/>
 					<BodyText className={css.detailsTopTitle}>{pageTitle}</BodyText>
@@ -141,7 +141,7 @@ const MediaDetailsIntroSection = ({
 									<div className={css.headerLogoWrap}>
 										<img
 											src={headerLogoUrl}
-											alt={item?.Name || 'Details'}
+											alt={item?.Name || '详情'}
 											className={`${css.headerLogo} ${imageLoadCss.imageReveal} ${isHeaderLogoLoaded ? imageLoadCss.imageRevealLoaded : ''}`}
 											onLoad={onHeaderLogoLoad}
 											onError={onHeaderLogoError}
@@ -160,7 +160,7 @@ const MediaDetailsIntroSection = ({
 							<div className={css.introCredits}>
 								{directorNames.length > 0 && (
 									<BodyText className={css.creditLine}>
-										<span className={css.creditLabel}>Directed by</span>
+										<span className={css.creditLabel}>导演</span>
 										<span className={css.creditNames}>
 											{renderCreditNames(directorNames, 'director')}
 										</span>
@@ -168,7 +168,7 @@ const MediaDetailsIntroSection = ({
 								)}
 								{writerNames.length > 0 && (
 									<BodyText className={css.creditLine}>
-										<span className={css.creditLabel}>Written by</span>
+										<span className={css.creditLabel}>编剧</span>
 										<span className={css.creditNames}>
 											{renderCreditNames(writerNames, 'writer')}
 										</span>
@@ -212,7 +212,7 @@ const MediaDetailsIntroSection = ({
 									componentRef={favoriteActionButtonRef}
 									spotlightId="details-favorite-action"
 									className={`${css.actionButton} ${css.favoriteAction} ${isFavorite ? css.favoriteActive : ''}`}
-									title={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+									title={isFavorite ? '从收藏移除' : '添加到收藏'}
 								/>
 								{showWatchlistAction ? (
 									<Button
@@ -235,7 +235,7 @@ const MediaDetailsIntroSection = ({
 									componentRef={watchedActionButtonRef}
 									spotlightId="details-watched-action"
 									className={`${css.actionButton} ${css.watchedAction} ${isWatched ? css.watchedActive : ''}`}
-									title={isWatched ? 'Mark as unwatched' : 'Mark as watched'}
+									title={isWatched ? '标记为未观看' : '标记为已观看'}
 								/>
 							</div>
 						</div>
@@ -255,7 +255,7 @@ const MediaDetailsIntroSection = ({
 								</div>
 							) : (
 								<BodyText className={`${css.overview} ${css.overviewMissing}`}>
-									No description available.
+									没有可用的描述。
 								</BodyText>
 							)}
 							{showPlaybackControls ? <div className={css.introControlsRow}>
@@ -283,7 +283,7 @@ const MediaDetailsIntroSection = ({
 								</Button>
 								{showSectionHints && (
 									<div className={css.sectionHint}>
-										More
+										更多
 										<Icon className={css.sectionHintArrow}>arrowsmalldown</Icon>
 									</div>
 								)}

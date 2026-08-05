@@ -1,4 +1,4 @@
-import {
+﻿import {
 	disposeExternalBitmapRenderer,
 	disposeExternalAssRenderer,
 	initExternalBitmapRenderer,
@@ -377,9 +377,13 @@ describe('subtitle renderer registry', () => {
 				subContent: '[Script Info]\nScriptType: v4.00+',
 				queryFonts: false,
 				defaultFont: 'breezyfin subtitle fallback',
-				fonts: [expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2')],
+				fonts: [
+				expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2'),
+				expect.stringContaining('node_modules/breezyfin-subtitle-assets/noto-sans-sc.otf')
+			],
 				availableFonts: expect.objectContaining({
-					'roboto medium': expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2')
+					'roboto medium': expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2'),
+				'noto sans sc': expect.stringContaining('node_modules/breezyfin-subtitle-assets/noto-sans-sc.otf')
 				}),
 				workerUrl: expect.stringContaining('node_modules/breezyfin-subtitle-assets/worker/worker.js'),
 				wasmUrl: expect.stringContaining('node_modules/breezyfin-subtitle-assets/wasm/jassub-worker.wasm'),
@@ -429,10 +433,12 @@ describe('subtitle renderer registry', () => {
 			expect(jassubOptions.queryFonts).toBe(false);
 			expect(jassubOptions.defaultFont).toBe('breezyfin subtitle fallback');
 			expect(jassubOptions.fonts).toEqual([
-				expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2')
+				expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2'),
+				expect.stringContaining('node_modules/breezyfin-subtitle-assets/noto-sans-sc.otf')
 			]);
 			expect(jassubOptions.availableFonts).toEqual(expect.objectContaining({
-				'roboto medium': expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2')
+				'roboto medium': expect.stringContaining('node_modules/breezyfin-subtitle-assets/default.woff2'),
+				'noto sans sc': expect.stringContaining('node_modules/breezyfin-subtitle-assets/noto-sans-sc.otf')
 			}));
 			expect(jassubOptions.workerUrl).toContain('node_modules/breezyfin-subtitle-assets/worker/worker.js');
 			expect(jassubOptions.wasmUrl).toContain('node_modules/breezyfin-subtitle-assets/wasm/jassub-worker.wasm');

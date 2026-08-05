@@ -29,9 +29,9 @@ import popupStyles from '../styles/popupStyles.module.less';
 import {popupShellCss} from '../styles/popupStyles';
 
 const FILTER_OPTIONS = [
-	{ id: 'movies', label: 'Movies', types: ['Movie'] },
+	{ id: 'movies', label: '电影', types: ['Movie'] },
 	{ id: 'series', label: 'Series', types: ['Series'] },
-	{ id: 'episodes', label: 'Episodes', types: ['Episode'] },
+	{ id: 'episodes', label: '分集', types: ['Episode'] },
 	{ id: 'people', label: 'People', types: ['Person'] }
 ];
 const SEARCH_DISCLOSURE_KEYS = {
@@ -448,7 +448,7 @@ const SearchPanel = ({
 
 	return (
 		<Panel {...rest}>
-			<Header title="Search" />
+			<Header title="搜索" />
 			<Toolbar
 				activeSection="search"
 				isActive={isActive}
@@ -467,7 +467,7 @@ const SearchPanel = ({
 						onSearchChange={handleSearchChange}
 						activeFilterCount={appliedFilterCount}
 						onFilterClick={openFilterPopup}
-						filterLabel="Search filters"
+						filterLabel="搜索筛选"
 					/>
 				</MediaBrowseOverlay>
 				<div className={css.resultsViewport}>
@@ -495,11 +495,11 @@ const SearchPanel = ({
 						</div>
 					) : hasSearched && results.length === 0 ? (
 						<div className={css.resultsStateOverlay}>
-							<BodyText>No results found for {searchTerm}</BodyText>
+							<BodyText>未找到与 “{searchTerm}” 相关的结果</BodyText>
 						</div>
 					) : !hasSearched ? (
 						<div className={css.resultsStateOverlay}>
-							<BodyText>Enter a search term to find movies, shows, and more</BodyText>
+							<BodyText>输入搜索关键词以查找电影、电视剧等内容</BodyText>
 						</div>
 					) : null}
 				</div>
@@ -510,13 +510,13 @@ const SearchPanel = ({
 						className={`${popupStyles.popupSurface} ${browseCss.filterPopupContent}`}
 						data-popup-focus-scope="true"
 					>
-						<BodyText className={browseCss.filterPopupTitle}>Search Filters</BodyText>
+						<BodyText className={browseCss.filterPopupTitle}>搜索筛选</BodyText>
 						<div className={browseCss.filterPopupActions}>
 							<Button size="small" onClick={handleSelectAllFilters} className={browseCss.filterPopupActionButton}>
-								Select All
+								全选
 							</Button>
 							<Button size="small" onClick={closeFilterPopup} className={browseCss.filterPopupActionButton}>
-								Done
+								完成
 							</Button>
 						</div>
 						<div className={browseCss.filterPopupOptions}>

@@ -44,6 +44,10 @@ const EXTRA_ASSET_LICENSES = [
 	{
 		label: 'Museo Sans subtitle fallback font',
 		path: 'node_modules/@enact/sandstone/fonts/MuseoSans/LICENSE.txt'
+	},
+	{
+		label: 'Noto Sans SC bundled CJK subtitle fallback font (SIL OFL 1.1)',
+		path: 'assets/fonts/OFL.txt'
 	}
 ];
 

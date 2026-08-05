@@ -133,7 +133,7 @@ export const usePlayerVideoLoader = ({
 		setCurrentAudioTrack(null);
 		setCurrentSubtitleTrack(null);
 		if (playbackOverrideRef.current?.forceNewSession !== true) {
-			setLoadingStatusMessage('Loading...');
+			setLoadingStatusMessage('加载中...');
 		}
 		setLoading(true);
 		reloadAttemptedRef.current = false;
@@ -275,10 +275,10 @@ export const usePlayerVideoLoader = ({
 					? 'audio-track'
 					: (isVideoQualityDecision ? 'dynamic-range' : 'subtitle-policy');
 				const decisionMessage = requiredDecision.type === 'unsupported-audio-switch'
-					? 'Waiting for audio decision...'
+					? '等待音频决策...'
 					: (isVideoQualityDecision
-						? 'Waiting for video quality decision...'
-						: 'Waiting for subtitle decision...');
+						? '等待视频质量决策...'
+						: '等待字幕决策...');
 				appendPlaybackDiagnostic?.({
 					scope: decisionScope,
 					stage: 'required-decision',
@@ -559,7 +559,7 @@ export const usePlayerVideoLoader = ({
 					message: err.message
 				});
 				setLoading(false);
-				setLoadingStatusMessage('Waiting for subtitle decision...');
+				setLoadingStatusMessage('等待字幕决策...');
 				await requestPlaybackDecision?.({
 					type: 'no-subtitles',
 					itemId: item.Id,
@@ -575,7 +575,7 @@ export const usePlayerVideoLoader = ({
 			).toLowerCase();
 			if (confirmedRange === 'hdr10') {
 				setLoading(false);
-				setLoadingStatusMessage('Waiting for video quality decision...');
+				setLoadingStatusMessage('等待视频质量决策...');
 				await requestPlaybackDecision?.({
 					type: 'dynamic-range-fallback',
 					itemId: item.Id,

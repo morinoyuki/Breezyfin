@@ -62,7 +62,7 @@ const MediaFilterControls = ({
 						onClick={onReset}
 						className={browseCss.filterPopupActionButton}
 					>
-							Reset
+							重置
 						</Button>
 					<Button
 						size="small"
@@ -70,7 +70,7 @@ const MediaFilterControls = ({
 						onClick={onApply}
 						className={browseCss.filterPopupActionButton}
 					>
-							Done
+							完成
 						</Button>
 					</div>
 					<div className={browseCss.filterPopupOptions}>

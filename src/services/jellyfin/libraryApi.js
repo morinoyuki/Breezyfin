@@ -89,7 +89,7 @@ export const getLibraryChildItems = async (
 		params.set('startIndex', String(safeStartIndex));
 		params.set('recursive', 'true');
 		params.set('sortBy', 'SortName');
-		params.set('sortOrder', 'Ascending');
+		params.set('sortOrder', '升序');
 		params.set('fields', 'Overview,PrimaryImageAspectRatio,BackdropImageTags,ImageTags,PrimaryImageTag,SeriesPrimaryImageTag,SeriesName,SeriesId,ParentBackdropItemId,ParentBackdropImageTags,ParentIndexNumber,IndexNumber,UserData,ChildCount,Tags,TagItems');
 
 		if (itemTypes) {
@@ -257,7 +257,7 @@ export const getFavoriteMediaItems = async (
 		params.set('startIndex', String(safeStartIndex));
 		params.set('recursive', 'true');
 		params.set('sortBy', 'SortName');
-		params.set('sortOrder', 'Ascending');
+		params.set('sortOrder', '升序');
 		params.set('fields', 'Overview,PrimaryImageAspectRatio,BackdropImageTags,ImageTags,PrimaryImageTag,SeriesPrimaryImageTag,SeriesName,SeriesId,ParentBackdropItemId,ParentBackdropImageTags,SeasonId,ParentId,ParentIndexNumber,IndexNumber,UserData');
 		params.set('imageTypeLimit', '1');
 		if (typeof options?.searchTerm === 'string' && options.searchTerm.trim()) {

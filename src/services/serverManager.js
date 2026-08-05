@@ -82,7 +82,7 @@ const addServer = ({ serverUrl, serverName, userId, username, accessToken, avata
 
 	const userEntry = {
 		userId,
-		username: username || 'User',
+		username: username || '用户',
 		accessToken,
 		avatarTag: avatarTag || servers[serverId]?.users?.[userId]?.avatarTag || null,
 		addedDate: servers[serverId]?.users?.[userId]?.addedDate || new Date().toISOString(),

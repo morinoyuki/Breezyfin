@@ -41,7 +41,7 @@ export const useMediaDetailsImages = ({item}) => {
 		return jellyfinService.getImageUrl(logoItemId, 'Logo', 1600) || '';
 	}, [item]);
 	const useHeaderLogo = Boolean(headerLogoUrl) && !headerLogoUnavailable;
-	const headerTitle = useHeaderLogo ? undefined : (item?.Name || 'Details');
+	const headerTitle = useHeaderLogo ? undefined : (item?.Name || '详情');
 
 	const handleHeaderLogoError = useImageErrorFallback(null, {
 		onError: () => setHeaderLogoUnavailable(true)

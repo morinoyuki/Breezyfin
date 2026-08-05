@@ -120,7 +120,7 @@ const WatchPartyPanel = ({
 		jellyfinService.getItem(state.room.mediaId).then((roomItem) => {
 			if (!cancelled && roomItem?.Id) onPlay(roomItem);
 		}).catch(() => {
-			if (!cancelled) setError('The room item is not accessible to this Jellyfin user.');
+			if (!cancelled) setError('该房间项目对该 Jellyfin 用户不可用。');
 		});
 		return () => {
 			cancelled = true;
@@ -183,7 +183,7 @@ const WatchPartyPanel = ({
 			onPlay(roomItem);
 		} catch (_) {
 			if (activeRef.current && requestId === playRequestRef.current) {
-				setError('The room item is not accessible to this Jellyfin user.');
+				setError('该房间项目对该 Jellyfin 用户不可用。');
 			}
 		}
 	}, [isActive, onPlay, state.room?.mediaId]);
@@ -194,7 +194,7 @@ const WatchPartyPanel = ({
 	return (
 		<IntegrationPanelLayout
 			{...rest}
-			title="Watch Party"
+			title="同步观影派对"
 			activeSection="watchParty"
 			isActive={isActive}
 			toolbarActions={toolbarActions}
@@ -205,17 +205,17 @@ const WatchPartyPanel = ({
 			onScrollStop={handleScrollStop}
 		>
 			<section className={css.section}>
-				<BodyText className={css.sectionTitle}>JellyWatchParty Rooms</BodyText>
+				<BodyText className={css.sectionTitle}>JellyWatchParty 房间</BodyText>
 				{availability?.available !== true ? (
 					<>
-						<BodyText>This server does not provide an authenticated JellyWatchParty session.</BodyText>
+						<BodyText>此服务器未提供经过身份验证的 JellyWatchParty 会话。</BodyText>
 						<PanelActionButton spotlightId="watch-party-retry" onClick={detectAvailability}>
-							Retry
+							重试
 						</PanelActionButton>
 					</>
 				) : null}
 				{availability?.available === true && state.connectionState !== 'open' ? (
-					<BodyText>Connecting to the session server...</BodyText>
+					<BodyText>正在连接到会话服务器...</BodyText>
 				) : null}
 				{error ? <BodyText>{error}</BodyText> : null}
 				{state.room ? (
@@ -235,7 +235,7 @@ const WatchPartyPanel = ({
 					<>
 						<Input
 							spotlightId="watch-party-room-name"
-							placeholder="Room name"
+							placeholder="房间名称"
 							value={roomName}
 							onChange={handleRoomNameChange}
 							className="bf-input-trigger"
@@ -243,7 +243,7 @@ const WatchPartyPanel = ({
 						<Input
 							spotlightId="watch-party-password"
 							type="password"
-							placeholder="Password for create or join (optional)"
+							placeholder="创建或加入的密码（可选）"
 							value={password}
 							onChange={handlePasswordChange}
 							className="bf-input-trigger"
@@ -263,7 +263,7 @@ const WatchPartyPanel = ({
 							Refresh Rooms
 						</PanelActionButton>
 						{state.rooms.length === 0 && state.connectionState === 'open' ? (
-							<BodyText>No watch parties are currently open.</BodyText>
+							<BodyText>当前没有开放的观看派对。</BodyText>
 						) : null}
 						{state.rooms.map((room) => (
 							<PanelActionButton

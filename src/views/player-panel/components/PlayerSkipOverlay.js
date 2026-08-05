@@ -60,7 +60,7 @@ const PlayerSkipOverlay = ({
 					onClick={onDismiss}
 					className={css.skipCloseButton}
 					spotlightId={SKIP_DISMISS_SPOTLIGHT_ID}
-					aria-label="Dismiss skip overlay"
+					aria-label="关闭跳过叠加层"
 				/>
 			</div>
 		</div>

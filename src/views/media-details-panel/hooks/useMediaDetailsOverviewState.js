@@ -80,30 +80,30 @@ export const useMediaDetailsOverviewState = ({
 	}, [episodes, item]);
 
 	const seriesPlayLabel = useMemo(() => {
-		if (item?.Type !== 'Series') return 'Play';
+		if (item?.Type !== 'Series') return '播放';
 		const targetEpisode =
 			selectedEpisode ||
 			episodes.find((episode) => !isEpisodePlayed(episode)) ||
 			episodes[0] ||
 			null;
-		if (!targetEpisode) return 'Play';
+		if (!targetEpisode) return '播放';
 		const badge = getEpisodeActionBadge(targetEpisode);
 		const withBadge = (label) => (badge ? `${label} ${badge}` : label);
 		if (isEpisodeInProgress(targetEpisode)) {
-			return withBadge('Continue');
+			return withBadge('继续');
 		}
 		if (!isEpisodePlayed(targetEpisode) && seriesHasWatchHistory) {
-			return withBadge('Next Up');
+			return withBadge('接下来播放');
 		}
 		if (!isEpisodePlayed(targetEpisode)) {
-			return withBadge('Play');
+			return withBadge('播放');
 		}
-		return withBadge('Play');
+		return withBadge('播放');
 	}, [episodes, item?.Type, selectedEpisode, seriesHasWatchHistory]);
 
 	const overviewPlayLabel = item?.Type === 'Series'
 		? seriesPlayLabel
-		: (shouldShowContinue ? 'Continue' : 'Play');
+		: (shouldShowContinue ? '继续' : '播放');
 
 	return {
 		hasOverviewOverflow,

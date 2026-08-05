@@ -27,16 +27,16 @@ const PREVIEW_SIZE = 10;
 const INSIGHT_ITEM_SIZE = ri.scale(256);
 const VIRTUAL_TABS = Object.freeze(['progress', 'completed', 'movies']);
 const TABS = Object.freeze([
-	{id: 'watchlist', label: 'Watchlist'},
+	{id: 'watchlist', label: '关注列表'},
 	{id: 'progress', label: 'Series Progress'},
 	{id: 'completed', label: 'Completed Series'},
-	{id: 'movies', label: 'Movie History'},
+	{id: 'movies', label: '电影历史'},
 	{id: 'statistics', label: 'Statistics'}
 ]);
 
 const formatDate = (value) => {
 	const date = new Date(value || '');
-	return Number.isNaN(date.getTime()) ? 'Unknown' : date.toLocaleDateString();
+	return Number.isNaN(date.getTime()) ? '未知' : date.toLocaleDateString();
 };
 
 const InsightArtwork = ({item}) => (
@@ -79,7 +79,7 @@ const InsightRow = ({
 				<BodyText className={css.insightTitle}>{item.Title}</BodyText>
 				<BodyText>{watched} of {total} watched · {remaining} remaining</BodyText>
 				<BodyText size="small">
-					Last watched: {item.LastWatchedEpisodeTitle || 'Unknown'} · {formatDate(item.LastPlayedDate)}
+					Last watched: {item.LastWatchedEpisodeTitle || '未知'} · {formatDate(item.LastPlayedDate)}
 				</BodyText>
 			</div>
 			<div className={css.insightActions}>
@@ -148,8 +148,8 @@ const StatisticsRanking = ({emptyMessage, items, metric, title}) => (
 	</section>
 );
 
-const getShowRankingMetric = (show) => `${show.WatchedEpisodeCount} episodes`;
-const getMovieRankingMetric = (movie) => `${movie.PlayCount} ${movie.PlayCount === 1 ? 'play' : 'plays'}`;
+const getShowRankingMetric = (show) => `${show.WatchedEpisodeCount} 集`;
+const getMovieRankingMetric = (movie) => `${movie.PlayCount} 次播放`;
 
 const WatchlistPanel = ({
 	onItemSelect,
@@ -241,7 +241,7 @@ const WatchlistPanel = ({
 			setShows(showPage.items);
 			setMovies(moviePage.items);
 		} catch (_) {
-			if (generation === generationRef.current) setError('Watchlist items could not be loaded.');
+			if (generation === generationRef.current) setError('无法加载关注列表项目。');
 		} finally {
 			if (generation === generationRef.current) setLoading(false);
 		}
@@ -275,7 +275,7 @@ const WatchlistPanel = ({
 				setNextStartIndex(page.nextStartIndex);
 				setHasMore(page.hasMore);
 			} catch (_) {
-				if (generation === generationRef.current) setError('This Watchlist view could not be loaded.');
+				if (generation === generationRef.current) setError('无法加载此关注列表视图。');
 			} finally {
 				if (nestedRequestRef.current.get(requestKey) === request) {
 					nestedRequestRef.current.delete(requestKey);
@@ -313,7 +313,7 @@ const WatchlistPanel = ({
 		setActiveTab(tabId);
 	}, []);
 	const viewMore = useCallback((type) => {
-		setNestedView({kind: 'watchlist', itemType: type, title: type === 'Series' ? 'Watchlist Shows' : 'Watchlist Movies'});
+		setNestedView({kind: 'watchlist', itemType: type, title: type === 'Series' ? '关注列表电视剧' : '关注列表电影'});
 	}, []);
 	const handleGridItemClick = useCallback((event) => {
 		const item = itemsById.get(event.currentTarget.dataset.itemId);
@@ -376,7 +376,7 @@ const WatchlistPanel = ({
 		getLandscapeCardImageUrls(item, {width: 640, quality: 76})
 	), []);
 	const firstBackdrop = nestedView ? items[0] : shows[0] || movies[0] || insightEntry.items[0] || null;
-	const title = nestedView?.title || 'Watchlist';
+	const title = nestedView?.title || '关注列表';
 	const statistics = insightEntry.statistics;
 	const statisticsUsesStaticViewport = activeTab === 'statistics' && !statistics;
 	const insightChildProps = useMemo(() => ({
@@ -405,7 +405,7 @@ const WatchlistPanel = ({
 			{!nestedView ? (
 				<PanelTabNavigation
 					activeId={activeTab}
-					ariaLabel="Watchlist views"
+					ariaLabel="关注列表视图"
 					onSelect={selectTab}
 					spotlightIdPrefix="watchlist-tab"
 					tabs={TABS}
@@ -413,9 +413,9 @@ const WatchlistPanel = ({
 			) : null}
 			{!nestedView && activeTab === 'watchlist' && !error ? (
 				<div className={css.watchlistContent}>
-					{loading ? <BreezyLoadingOverlay label="Loading Watchlist..." /> : null}
+					{loading ? <BreezyLoadingOverlay label="正在加载关注列表..." /> : null}
 					<MediaRow
-						title="Shows"
+						title="电视剧"
 						items={shows}
 						sectionKey="Series"
 						onItemClick={onItemSelect}
@@ -423,7 +423,7 @@ const WatchlistPanel = ({
 						getImageCandidates={getImageCandidates}
 					/>
 					<MediaRow
-						title="Movies"
+						title="电影"
 						items={movies}
 						sectionKey="Movie"
 						onItemClick={onItemSelect}
@@ -431,7 +431,7 @@ const WatchlistPanel = ({
 						getImageCandidates={getImageCandidates}
 					/>
 					{!loading && shows.length === 0 && movies.length === 0 ? (
-						<BodyText className={css.empty}>Your Watchlist is empty.</BodyText>
+						<BodyText className={css.empty}>关注列表为空。</BodyText>
 					) : null}
 				</div>
 			) : null}
@@ -454,12 +454,12 @@ const WatchlistPanel = ({
 			{!nestedView && VIRTUAL_TABS.includes(activeTab) ? (
 				<div className={css.listViewport}>
 					{insightEntry.loading ? (
-						<BreezyLoadingOverlay label={`Loading ${TABS.find((tab) => tab.id === activeTab)?.label || 'Watchlist'}...`} />
+						<BreezyLoadingOverlay label={`Loading ${TABS.find((tab) => tab.id === activeTab)?.label || '关注列表'}...`} />
 					) : null}
 					{insightEntry.error ? (
 						<div className={css.inlineState} role="alert">
 							<BodyText>{insightEntry.error}</BodyText>
-							<PanelActionButton onClick={retryActiveInsight}>Retry</PanelActionButton>
+							<PanelActionButton onClick={retryActiveInsight}>重试</PanelActionButton>
 						</div>
 					) : null}
 					<VirtualList
@@ -476,17 +476,17 @@ const WatchlistPanel = ({
 						snapToCenter={false}
 					/>
 					{insightEntry.items.length === 0 && !insightEntry.loading && !insightEntry.error ? (
-						<BodyText className={css.emptyList}>No Watchlist insight items are available.</BodyText>
+						<BodyText className={css.emptyList}>没有可用的关注列表洞察项目。</BodyText>
 					) : null}
 				</div>
 			) : null}
 			{!nestedView && activeTab === 'statistics' ? (
 				<div className={css.listViewport}>
-					{insightEntry.loading ? <BreezyLoadingOverlay label="Loading Statistics..." /> : null}
+					{insightEntry.loading ? <BreezyLoadingOverlay label="正在加载统计信息..." /> : null}
 					{insightEntry.error ? (
 						<div className={css.inlineState} role="alert">
 							<BodyText>{insightEntry.error}</BodyText>
-							<PanelActionButton onClick={retryStatistics}>Retry</PanelActionButton>
+							<PanelActionButton onClick={retryStatistics}>重试</PanelActionButton>
 						</div>
 					) : null}
 					{statistics ? (
@@ -494,18 +494,18 @@ const WatchlistPanel = ({
 							<div className={css.statistics}>
 								<div><strong>{statistics.SeriesStarted ?? 0}</strong><span>Series Started</span></div>
 								<div><strong>{statistics.SeriesWatched ?? 0}</strong><span>Series Watched</span></div>
-								<div><strong>{statistics.EpisodesWatched ?? 0}</strong><span>Episodes Watched</span></div>
-								<div><strong>{statistics.MoviesWatched ?? 0}</strong><span>Movies Watched</span></div>
+								<div><strong>{statistics.EpisodesWatched ?? 0}</strong><span>已观看分集</span></div>
+								<div><strong>{statistics.MoviesWatched ?? 0}</strong><span>已观看电影</span></div>
 							</div>
 							<div className={css.rankings}>
 								<StatisticsRanking
-									title="Top 5 Shows"
+									title="电视剧 Top 5"
 									items={statistics.TopShows || []}
 									emptyMessage="No watched shows are available."
 									metric={getShowRankingMetric}
 								/>
 								<StatisticsRanking
-									title="Top 5 Movies"
+									title="电影 Top 5"
 									items={statistics.TopMovies || []}
 									emptyMessage="No watched movies are available."
 									metric={getMovieRankingMetric}

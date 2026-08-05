@@ -52,16 +52,16 @@ const ProviderItemPopup = ({
 				<BodyText className={css.detail}>{detail}</BodyText>
 				{metadata.directors.length > 0 ? (
 					<BodyText className={css.metadataLine}>
-						<strong>Directed by:</strong> {metadata.directors.join(', ')}
+						<strong>导演：</strong> {metadata.directors.join(', ')}
 					</BodyText>
 				) : null}
 				{metadata.writers.length > 0 ? (
 					<BodyText className={css.metadataLine}>
-						<strong>Written by:</strong> {metadata.writers.join(', ')}
+						<strong>编剧：</strong> {metadata.writers.join(', ')}
 					</BodyText>
 				) : null}
 				<div className={css.actions}>
-					<PanelActionButton spotlightId={spotlightId} onClick={onClose}>Close</PanelActionButton>
+					<PanelActionButton spotlightId={spotlightId} onClick={onClose}>关闭</PanelActionButton>
 				</div>
 			</div>
 		</Popup>

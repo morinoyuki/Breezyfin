@@ -1,11 +1,11 @@
 export const SETTINGS_TABS = [
-	{key: 'info', label: 'Info'},
-	{key: 'home', label: 'Home'},
-	{key: 'playback', label: 'Playback'},
-	{key: 'subtitles', label: 'Subtitles'},
-	{key: 'display', label: 'Display'},
-	{key: 'about', label: 'About'},
-	{key: 'diagnostics', label: 'Diagnostics'}
+	{key: 'info', label: '信息'},
+	{key: 'home', label: '主页'},
+	{key: 'playback', label: '播放'},
+	{key: 'subtitles', label: '字幕'},
+	{key: 'display', label: '显示'},
+	{key: 'about', label: '关于'},
+	{key: 'diagnostics', label: '诊断'}
 ];
 
 export const TAB_SECTION_KEYS = {
@@ -40,7 +40,7 @@ export const getAssSubtitleRendererControlState = (settings, enabledLabel) => {
 	const enabled = isSmartSubtitleHandlingEnabled(settings);
 	return {
 		enabled,
-		label: enabled ? enabledLabel : 'Manual mode'
+		label: enabled ? enabledLabel : '手动模式'
 	};
 };
 
@@ -48,7 +48,7 @@ export const getBitmapSubtitleRendererControlState = (settings, enabledLabel) =>
 	const enabled = isSmartSubtitleHandlingEnabled(settings);
 	return {
 		enabled,
-		label: enabled ? enabledLabel : 'Manual mode'
+		label: enabled ? enabledLabel : '手动模式'
 	};
 };
 
@@ -56,12 +56,12 @@ export const getSubtitleBurnInFormatsControlState = (settings, enabledLabel) => 
 	if (isSmartSubtitleHandlingEnabled(settings)) {
 		return {
 			enabled: false,
-			label: 'Managed by Smart'
+			label: '由智能模式管理'
 		};
 	}
 	return {
 		enabled: true,
-		label: settings?.enableSubtitleBurnIn === false ? 'Disabled' : enabledLabel
+		label: settings?.enableSubtitleBurnIn === false ? '已禁用' : enabledLabel
 	};
 };
 
@@ -75,12 +75,12 @@ export const isSubtitleBurnInCodecSelected = (settings, codec) => (
 
 export const getWipeCacheConfirmCopy = (wipeCacheKeepLogin) => (
 	wipeCacheKeepLogin ? {
-		title: 'Wipe Cache (Keep Login)',
-		message: 'This clears cache/storage data and reloads the app, while preserving saved login session data.',
-		actionLabel: 'Wipe (Keep Login) & Reload'
+		title: '清除缓存（保留登录）',
+		message: '这将清除缓存和存储数据并刷新应用，同时保留已保存的登录会话。',
+		actionLabel: '清除（保留登录）并刷新'
 	} : {
-		title: 'Wipe App Cache',
-		message: 'This clears local storage, session storage, cache storage, and IndexedDB, then reloads the app.',
-		actionLabel: 'Wipe & Reload'
+		title: '清除应用缓存',
+		message: '这将清除本地存储、会话存储、缓存存储和 IndexedDB，然后刷新应用。',
+		actionLabel: '清除并刷新'
 	}
 );

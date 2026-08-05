@@ -1,7 +1,7 @@
 import {useCallback, useEffect, useRef} from 'react';
 import jellyfinService from '../services/jellyfinService';
 
-const LINKED_ITEM_UNAVAILABLE_MESSAGE = 'The linked Jellyfin item is no longer available to this user.';
+const LINKED_ITEM_UNAVAILABLE_MESSAGE = '链接的 Jellyfin 项目对该用户不再可用。';
 
 export const usePluginMediaItemActivation = ({
 	onItemSelect,
@@ -29,7 +29,7 @@ export const usePluginMediaItemActivation = ({
 					onItemSelect(linkedItem);
 					return;
 				}
-				throw new Error('Linked Jellyfin item was not found.');
+				throw new Error('未找到链接的 Jellyfin 项目。');
 			} catch (error) {
 				if (!isActive || generation !== requestGenerationRef.current) return;
 				onUnavailable?.(LINKED_ITEM_UNAVAILABLE_MESSAGE, {error, item});

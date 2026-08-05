@@ -25,20 +25,20 @@ const PlayerSyncPlayPopup = ({open, group, groupState, onClose, onLeave, onStart
 	const contentRef = useRef(null);
 	usePopupInitialFocus(open, contentRef);
 	const participants = Array.isArray(group?.Participants) ? group.Participants : [];
-	const state = groupState?.state || group?.State || 'Unknown';
+	const state = groupState?.state || group?.State || '未知';
 	const reason = groupState?.reason || group?.StateReason || '';
 	const waiting = String(state).toLowerCase() === 'waiting';
 
 	return (
 		<Popup open={open} onClose={onClose} css={popupShellCss}>
 			<div ref={contentRef} className={`${popupStyles.popupSurface} ${css.content}`}>
-				<Header title={group?.GroupName || 'SyncPlay'} />
+				<Header title={group?.GroupName || '同步播放'} />
 				<div className={css.statusGrid}>
-					<BodyText>Status</BodyText>
+					<BodyText>状态</BodyText>
 					<BodyText>{state}</BodyText>
-					{reason ? <BodyText>Reason</BodyText> : null}
+					{reason ? <BodyText>原因</BodyText> : null}
 					{reason ? <BodyText>{reason}</BodyText> : null}
-					<BodyText>Participants</BodyText>
+					<BodyText>参与者</BodyText>
 					<BodyText>{participants.length}</BodyText>
 				</div>
 				{participants.length > 0 ? (
@@ -52,10 +52,10 @@ const PlayerSyncPlayPopup = ({open, group, groupState, onClose, onLeave, onStart
 				) : null}
 				<div className={css.actions}>
 					{waiting ? (
-						<PanelActionButton onClick={onStart}>Start Group Playback</PanelActionButton>
+						<PanelActionButton onClick={onStart}>开始群组播放</PanelActionButton>
 					) : null}
-					<PanelActionButton onClick={onLeave}>Leave SyncPlay</PanelActionButton>
-					<PanelActionButton onClick={onClose}>Close</PanelActionButton>
+					<PanelActionButton onClick={onLeave}>离开 SyncPlay</PanelActionButton>
+					<PanelActionButton onClick={onClose}>关闭</PanelActionButton>
 				</div>
 			</div>
 		</Popup>

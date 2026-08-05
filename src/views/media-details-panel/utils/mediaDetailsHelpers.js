@@ -1,32 +1,32 @@
 const LANGUAGE_NAME_MAP = {
-	eng: 'English',
-	en: 'English',
-	spa: 'Spanish',
-	es: 'Spanish',
-	fra: 'French',
-	fr: 'French',
-	deu: 'German',
-	de: 'German',
-	ita: 'Italian',
-	it: 'Italian',
-	jpn: 'Japanese',
-	ja: 'Japanese',
-	kor: 'Korean',
-	ko: 'Korean',
-	por: 'Portuguese',
-	pt: 'Portuguese',
-	rus: 'Russian',
-	ru: 'Russian',
+	eng: '英语',
+	en: '英语',
+	spa: '西班牙语',
+	es: '西班牙语',
+	fra: '法语',
+	fr: '法语',
+	deu: '德语',
+	de: '德语',
+	ita: '意大利语',
+	it: '意大利语',
+	jpn: '日语',
+	ja: '日语',
+	kor: '韩语',
+	ko: '韩语',
+	por: '葡萄牙语',
+	pt: '葡萄牙语',
+	rus: '俄语',
+	ru: '俄语',
 	ara: 'Arabic',
 	ar: 'Arabic',
-	zho: 'Chinese',
-	zh: 'Chinese'
+	zho: '中文',
+	zh: '中文'
 };
 
 export const toLanguageDisplayName = (language) => {
-	if (!language) return 'Unknown';
+	if (!language) return '未知';
 	const normalized = String(language).trim().toLowerCase();
-	if (!normalized) return 'Unknown';
+	if (!normalized) return '未知';
 	if (LANGUAGE_NAME_MAP[normalized]) return LANGUAGE_NAME_MAP[normalized];
 	if (normalized.length === 2 || normalized.length === 3) {
 		return normalized.toUpperCase();
@@ -35,7 +35,7 @@ export const toLanguageDisplayName = (language) => {
 };
 
 export const getTrackSummaryLabel = (tracks, selectedTrackKey, options = {}) => {
-	const {noneKey = null, noneLabel = 'None', defaultLabel = 'Default'} = options;
+	const {noneKey = null, noneLabel = '无', defaultLabel = '默认'} = options;
 	if (selectedTrackKey === noneKey) return noneLabel;
 	const track = Array.isArray(tracks)
 		? tracks.find((entry) => entry?.key === selectedTrackKey)

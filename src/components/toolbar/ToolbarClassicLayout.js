@@ -42,7 +42,7 @@ const ToolbarClassicLayout = ({
 					<Button
 						size="small"
 						className={css.userButton}
-						aria-label="User Profile"
+						aria-label="用户资料"
 						spotlightId="toolbar-user"
 						onClick={handleUserButtonClick}
 					>
@@ -62,7 +62,7 @@ const ToolbarClassicLayout = ({
 					<SpottableDiv
 						onClick={handleNavigateHome}
 						className={`${css.iconButton} ${activeSection === 'home' ? css.selected : ''}`}
-						aria-label="Home"
+						aria-label="主页"
 						spotlightId="toolbar-home"
 					>
 						<Icon size="small">home</Icon>
@@ -71,7 +71,7 @@ const ToolbarClassicLayout = ({
 					<SpottableDiv
 						onClick={handleNavigateSearch}
 						className={`${css.iconButton} ${activeSection === 'search' ? css.selected : ''}`}
-						aria-label="Search"
+						aria-label="搜索"
 						spotlightId="toolbar-search"
 					>
 						<Icon size="small">search</Icon>
@@ -80,7 +80,7 @@ const ToolbarClassicLayout = ({
 					<SpottableDiv
 						onClick={handleClassicBack}
 						className={css.iconButton}
-						aria-label="Back"
+						aria-label="返回"
 						spotlightId="toolbar-back"
 					>
 						<Icon size="small">arrowsmallleft</Icon>
@@ -89,7 +89,7 @@ const ToolbarClassicLayout = ({
 					<SpottableDiv
 						onClick={handleNavigateFavorites}
 						className={`${css.iconButton} ${activeSection === 'favorites' ? css.selected : ''}`}
-						aria-label="Favorites"
+						aria-label="收藏"
 						spotlightId="toolbar-favorites"
 					>
 						<Icon size="small">star</Icon>
@@ -104,7 +104,7 @@ const ToolbarClassicLayout = ({
 							className={css.toolbarButton}
 							spotlightId="toolbar-watchlist"
 						>
-							Watchlist
+							关注列表
 						</Button>
 					) : null}
 					{showCalendar ? (
@@ -115,7 +115,7 @@ const ToolbarClassicLayout = ({
 							className={css.toolbarButton}
 							spotlightId="toolbar-calendar"
 						>
-							Calendar
+							日历
 						</Button>
 					) : null}
 					{showWatchParty ? (
@@ -126,7 +126,7 @@ const ToolbarClassicLayout = ({
 							className={css.toolbarButton}
 							spotlightId="toolbar-watch-party"
 						>
-							Watch Party
+							同步观影派对
 						</Button>
 					) : null}
 					{libraries.map((library) => (
@@ -152,7 +152,7 @@ const ToolbarClassicLayout = ({
 					<SpottableDiv
 						onClick={handleNavigateSyncPlay}
 						className={`${css.iconButton} ${activeSection === 'syncPlay' ? css.selected : ''}`}
-						aria-label="SyncPlay"
+						aria-label="同步播放"
 						spotlightId="toolbar-sync-play"
 					>
 						<Icon size="small">dlna</Icon>
@@ -161,7 +161,7 @@ const ToolbarClassicLayout = ({
 				<SpottableDiv
 					onClick={handleNavigateSettings}
 					className={css.iconButton}
-					aria-label="Settings"
+					aria-label="设置"
 					spotlightId="toolbar-settings"
 				>
 					<Icon size="small">gear</Icon>

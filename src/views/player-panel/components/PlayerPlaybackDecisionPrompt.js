@@ -35,13 +35,13 @@ const PlayerPlaybackDecisionPrompt = ({
 			title: 'Try image subtitle burn-in?',
 			message: 'Image-based subtitles such as PGS/PGSSUB are fragile to burn in and may fail on servers using hardware transcoding such as NVENC/CUDA. Try server burn-in anyway?',
 			confirm: 'Yes, try burn-in',
-			decline: 'Back to details'
+			decline: '返回详情'
 		},
 		'no-subtitles': {
 			title: 'Play without subtitles?',
 			message: 'The selected subtitles could not be delivered with the current renderer or server configuration. Continue without subtitles, or go back?',
 			confirm: 'Continue without subtitles',
-			decline: 'Back to details'
+			decline: '返回详情'
 		},
 		'hdr-dv-burn-in': {
 			title: 'Burn in subtitles?',
@@ -53,14 +53,14 @@ const PlayerPlaybackDecisionPrompt = ({
 			title: 'Switch audio track?',
 			message: `The selected ${formatTrack(prompt?.selectedTrack)} track is not supported by this TV. Use ${formatTrack(prompt?.proposedTrack)} instead?`,
 			confirm: 'Use supported track',
-			decline: 'Back to details'
+			decline: '返回详情'
 		},
 		'dolby-vision-original-quality': {
 			title: 'Try original quality?',
 			message: `Jellyfin wants to re-encode Dolby Vision because it exceeds the current ${prompt?.configuredBitrateMbps || 'configured'} Mbps limit. Try Direct Play or video-copy remux at the detected client maximum of ${prompt?.proposedBitrateMbps || 120} Mbps, or transcode to SDR at the current limit?`,
 			confirm: 'Try original quality',
 			alternate: 'Transcode in SDR',
-			decline: 'Back to details'
+			decline: '返回详情'
 		},
 		'dynamic-range-fallback': {
 			title: prompt?.proposedRange === 'sdr' ? 'Continue in SDR?' : 'Continue in HDR?',
@@ -68,13 +68,13 @@ const PlayerPlaybackDecisionPrompt = ({
 				? 'HDR playback is not available for this stream. Continue in SDR with reduced dynamic range?'
 				: 'Jellyfin selected an unsafe Dolby Vision video transcode. Continue in HDR instead? Video quality or dynamic range may change.',
 			confirm: prompt?.proposedRange === 'sdr' ? 'Continue in SDR' : 'Continue in HDR',
-			decline: 'Back to details'
+			decline: '返回详情'
 		}
 	}[type] || {
 		title: 'Subtitle decision required',
 		message: 'Breezyfin needs a subtitle fallback decision before continuing playback.',
-		confirm: 'Continue',
-		decline: 'Back to details'
+		confirm: '继续',
+		decline: '返回详情'
 	};
 
 	return (

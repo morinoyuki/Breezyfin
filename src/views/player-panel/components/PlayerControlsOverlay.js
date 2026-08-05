@@ -137,14 +137,14 @@ const PlayerControlsOverlay = ({
 								onClick={openWatchPartyPopup}
 								className={css.playerControlButton}
 							>
-								{watchPartyRoom ? 'Watch Party' : 'Parties'}
+								{watchPartyRoom ? '同步观影派对' : 'Parties'}
 							</Button>
 						) : null}
 						{syncPlayGroup ? (
 							<Button
 								size="small"
 								icon="dlna"
-								aria-label="SyncPlay"
+								aria-label="同步播放"
 								onClick={openSyncPlayPopup}
 								className={css.playerControlButton}
 							/>

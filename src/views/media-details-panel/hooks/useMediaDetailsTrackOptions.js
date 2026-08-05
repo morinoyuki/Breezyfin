@@ -17,7 +17,7 @@ export const useMediaDetailsTrackOptions = ({
 	), [playbackInfo]);
 
 	const subtitleTracks = useMemo(() => ([
-		{children: 'None', summary: 'None', key: -1},
+		{children: '无', summary: '无', key: -1},
 		...(playbackInfo?.MediaSources?.[0]?.MediaStreams
 			.filter((stream) => stream.Type === 'Subtitle')
 			.map((track) => ({
@@ -29,15 +29,15 @@ export const useMediaDetailsTrackOptions = ({
 
 	const audioSummary = useMemo(() => {
 		return getTrackSummaryLabel(audioTracks, selectedAudioTrack, {
-			defaultLabel: 'Default'
+			defaultLabel: '默认'
 		});
 	}, [audioTracks, selectedAudioTrack]);
 
 	const subtitleSummary = useMemo(() => {
 		return getTrackSummaryLabel(subtitleTracks, selectedSubtitleTrack, {
 			noneKey: -1,
-			noneLabel: 'None',
-			defaultLabel: 'Default'
+			noneLabel: '无',
+			defaultLabel: '默认'
 		});
 	}, [selectedSubtitleTrack, subtitleTracks]);
 

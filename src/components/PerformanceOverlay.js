@@ -102,7 +102,7 @@ const PerformanceOverlay = ({enabled = false, inputMode = '5way', suspended = fa
 	return (
 		<div className={css.overlay} aria-hidden>
 			<div className={css.metric}>
-				<span className={css.label}>Slow</span>
+				<span className={css.label}>慢</span>
 				<span className={css.value}>{slowFrames}/s</span>
 			</div>
 			<div className={css.metric}>
@@ -110,27 +110,27 @@ const PerformanceOverlay = ({enabled = false, inputMode = '5way', suspended = fa
 				<span className={css.value}>{fps}</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Next</span>
+				<span className={css.label}>下一个</span>
 				<span className={css.value}>{inputLatency}ms</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Mode</span>
+				<span className={css.label}>模式</span>
 				<span className={css.value}>{inputMode}</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Cards</span>
+				<span className={css.label}>卡片</span>
 				<span className={css.value}>{mediaMetrics.mountedCards}</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Images</span>
+				<span className={css.label}>图片</span>
 				<span className={css.value}>{mediaMetrics.pendingImages}/{mediaMetrics.failedImages}</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Load</span>
+				<span className={css.label}>加载</span>
 				<span className={css.value}>{mediaMetrics.imageLoadLatency}ms</span>
 			</div>
 			<div className={css.metric}>
-				<span className={css.label}>Grid</span>
+				<span className={css.label}>网格</span>
 				<span className={css.value}>{mediaMetrics.gridOverhang}</span>
 			</div>
 		</div>

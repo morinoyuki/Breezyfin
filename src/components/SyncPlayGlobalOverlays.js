@@ -40,11 +40,11 @@ const SyncPlayGlobalOverlays = () => {
 				css={popupShellCss}
 			>
 				<div ref={decisionContentRef} className={`${popupStyles.popupSurface} ${css.decision}`}>
-					<BodyText>A different item is already queued for this SyncPlay group.</BodyText>
+					<BodyText>此 SyncPlay 群组已排队其他项目。</BodyText>
 					<div className={css.actions}>
-						<PanelActionButton onClick={queueReplaceAfterHide}>Replace group playback</PanelActionButton>
-						<PanelActionButton onClick={queueJoinAfterHide}>Join current group playback</PanelActionButton>
-						<PanelActionButton onClick={closeDecision}>Cancel</PanelActionButton>
+						<PanelActionButton onClick={queueReplaceAfterHide}>替换群组播放</PanelActionButton>
+						<PanelActionButton onClick={queueJoinAfterHide}>加入当前群组播放</PanelActionButton>
+						<PanelActionButton onClick={closeDecision}>取消</PanelActionButton>
 					</div>
 				</div>
 			</Popup>
@@ -52,9 +52,9 @@ const SyncPlayGlobalOverlays = () => {
 				<div className={`${popupStyles.popupSurface} ${css.notification}`} role="status">
 					<BodyText>{syncPlay.notification.message}</BodyText>
 					{syncPlay.notification.type === 'remote-playback' ? (
-						<PanelActionButton size="small" onClick={syncPlay.resumeSession}>Watch</PanelActionButton>
+						<PanelActionButton size="small" onClick={syncPlay.resumeSession}>观看</PanelActionButton>
 					) : null}
-					<PanelActionButton size="small" onClick={syncPlay.dismissNotification}>Dismiss</PanelActionButton>
+					<PanelActionButton size="small" onClick={syncPlay.dismissNotification}>关闭</PanelActionButton>
 				</div>
 			) : null}
 		</>

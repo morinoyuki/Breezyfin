@@ -32,13 +32,13 @@ const ToolbarLibraryPicker = ({
 				className={contentClassName}
 				data-popup-focus-scope="true"
 				role="region"
-				aria-label="Library selection"
+				aria-label="媒体库选择"
 			>
 				<div className={css.libraryNativeInner}>
-					<BodyText className={css.libraryNativeTitle}>Libraries</BodyText>
+					<BodyText className={css.libraryNativeTitle}>媒体库</BodyText>
 					<div className={css.libraryNativeGrid}>
 						{libraries.length === 0 && (
-							<BodyText className={css.libraryNativeEmpty}>No libraries available</BodyText>
+							<BodyText className={css.libraryNativeEmpty}>没有可用的媒体库</BodyText>
 						)}
 						{libraries.map((library) => (
 							<Button

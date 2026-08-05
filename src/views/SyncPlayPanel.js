@@ -45,7 +45,7 @@ const SyncPlayPanel = ({
 		} catch (_) {
 			if (generation !== requestGenerationRef.current) return;
 			setGroups([]);
-			setError('SyncPlay groups are unavailable for this user.');
+			setError('该用户无法使用 SyncPlay 群组。');
 		} finally {
 			if (generation === requestGenerationRef.current) setLoading(false);
 		}
@@ -96,7 +96,7 @@ const SyncPlayPanel = ({
 			if (generation !== requestGenerationRef.current) return;
 		} catch (_) {
 			if (generation !== requestGenerationRef.current) return;
-			setError('Could not join this SyncPlay group.');
+			setError('无法加入此 SyncPlay 群组。');
 		}
 	}, [groups, syncPlay]);
 
@@ -110,7 +110,7 @@ const SyncPlayPanel = ({
 			await loadGroups();
 		} catch (_) {
 			if (generation !== requestGenerationRef.current) return;
-			setError('Could not create a SyncPlay group.');
+			setError('无法创建 SyncPlay 群组。');
 		}
 	}, [loadGroups, syncPlay]);
 
@@ -123,7 +123,7 @@ const SyncPlayPanel = ({
 			loadGroups();
 		} catch (_) {
 			if (generation === requestGenerationRef.current) {
-				setError('Could not leave this SyncPlay group.');
+				setError('无法离开此 SyncPlay 群组。');
 			}
 		}
 	}, [loadGroups, syncPlay]);
@@ -133,7 +133,7 @@ const SyncPlayPanel = ({
 		try {
 			await syncPlay.startGroupPlayback();
 		} catch (_) {
-			setError('Could not force the waiting SyncPlay group to start.');
+			setError('无法强制等待中的 SyncPlay 群组开始。');
 		}
 	}, [syncPlay]);
 
@@ -141,7 +141,7 @@ const SyncPlayPanel = ({
 	return (
 		<IntegrationPanelLayout
 			{...rest}
-			title="SyncPlay"
+			title="同步播放"
 			activeSection="syncPlay"
 			isActive={isActive}
 			toolbarActions={toolbarActions}
@@ -152,33 +152,33 @@ const SyncPlayPanel = ({
 			onScrollStop={handleScrollStop}
 		>
 			<section className={css.section}>
-				<BodyText className={css.sectionTitle}>Native Jellyfin Groups</BodyText>
+				<BodyText className={css.sectionTitle}>原生 Jellyfin 群组</BodyText>
 				{error ? <BodyText>{error}</BodyText> : null}
-				{error ? <PanelActionButton spotlightId="sync-play-retry" onClick={loadGroups}>Retry</PanelActionButton> : null}
+				{error ? <PanelActionButton spotlightId="sync-play-retry" onClick={loadGroups}>重试</PanelActionButton> : null}
 				{joinedGroup ? (
 					<>
 						<BodyText>Joined: {joinedGroup.GroupName || joinedGroup.GroupId}</BodyText>
 						<BodyText>Participants: {(joinedGroup.Participants || []).length}</BodyText>
 						<BodyText>
-							Group state: {syncPlay.groupState?.state || joinedGroup.State || 'Unknown'}
+							Group state: {syncPlay.groupState?.state || joinedGroup.State || '未知'}
 						</BodyText>
-						<BodyText>Local playback: {syncPlay.followMode === 'following' ? 'Following' : 'Suspended'}</BodyText>
+						<BodyText>Local playback: {syncPlay.followMode === 'following' ? '跟随中' : '已暂停'}</BodyText>
 						{syncPlay.followMode === 'suspended' && syncPlay.queue.activeItemId ? (
 							<PanelActionButton spotlightId="sync-play-resume" onClick={syncPlay.resumeSession}>
-								Resume Session
+								恢复会话
 							</PanelActionButton>
 						) : null}
 						{String(syncPlay.groupState?.state || joinedGroup.State || '').toLowerCase() === 'waiting' ? (
 							<PanelActionButton spotlightId="sync-play-start" onClick={startGroupPlayback}>
-								Start Group Playback
+								开始群组播放
 							</PanelActionButton>
 						) : null}
-						<PanelActionButton spotlightId="sync-play-leave" onClick={leaveGroup}>Leave Group</PanelActionButton>
+						<PanelActionButton spotlightId="sync-play-leave" onClick={leaveGroup}>离开群组</PanelActionButton>
 					</>
 				) : (
 					<>
 						<PanelActionButton spotlightId="sync-play-create" onClick={createGroup}>
-							Create Group
+							创建群组
 						</PanelActionButton>
 						{groups.map((group) => (
 							<PanelActionButton

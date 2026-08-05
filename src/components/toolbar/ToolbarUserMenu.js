@@ -20,9 +20,9 @@ const ToolbarUserMenu = ({
 				</>
 			)}
 			<div className={css.userMenuInner}>
-				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onLogout} className={css.menuButton}>Log Out</Button>
-				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onSwitchUser} className={css.menuButton}>Switch User</Button>
-				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onExit} className={css.menuButton}>Exit</Button>
+				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onLogout} className={css.menuButton}>退出登录</Button>
+				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onSwitchUser} className={css.menuButton}>切换用户</Button>
+				<Button size="small" focusEffect="static" backgroundOpacity="transparent" shadowed={false} onClick={onExit} className={css.menuButton}>退出</Button>
 			</div>
 		</div>
 	);

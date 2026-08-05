@@ -228,11 +228,11 @@ const SettingsPopups = ({
 				<BodyText className={css.popupNumericValue}>{valueLabel}</BodyText>
 				<div className={css.popupNumericActions}>
 					<Button className={css.popupOption} onClick={onDecrease}>-</Button>
-					<Button className={css.popupOption} onClick={onReset}>Reset</Button>
+					<Button className={css.popupOption} onClick={onReset}>重置</Button>
 					<Button className={css.popupOption} onClick={onIncrease}>+</Button>
 				</div>
 				<div className={css.popupActions}>
-					<Button onClick={onClose} className={css.popupOption}>Done</Button>
+					<Button onClick={onClose} className={css.popupOption}>完成</Button>
 				</div>
 			</div>
 		</Popup>
@@ -246,7 +246,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={bitratePopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Select Maximum Bitrate</BodyText>
+					<BodyText className={css.popupTitle}>选择最大位率</BodyText>
 					{bitrateOptions.map((option) => (
 						<Button
 							key={option.value}
@@ -265,7 +265,7 @@ const SettingsPopups = ({
 				open: screensaverTimeoutPopupOpen,
 				onClose: closeScreensaverTimeoutPopup,
 				contentRef: screensaverTimeoutPopupContentRef,
-				title: 'Screensaver Timeout',
+				title: '屏保超时',
 				options: screensaverTimeoutOptions,
 				settingKey: 'screensaverTimeoutMinutes',
 				onSelect: handleScreensaverTimeoutSelect,
@@ -276,7 +276,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayWeightPopupOpen,
 				onClose: closeSubtitleOverlayWeightPopup,
 				contentRef: subtitleOverlayWeightPopupContentRef,
-				title: 'Breezyfin Subtitle Font Weight',
+				title: 'Breezyfin 字幕字重',
 				options: subtitleOverlayWeightOptions,
 				settingKey: 'subtitleOverlayWeight',
 				onSelect: handleSubtitleOverlayWeightSelect,
@@ -287,7 +287,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayTextColorPopupOpen,
 				onClose: closeSubtitleOverlayTextColorPopup,
 				contentRef: subtitleOverlayTextColorPopupContentRef,
-				title: 'Breezyfin Subtitle Text Color',
+				title: 'Breezyfin 字幕文字颜色',
 				options: subtitleOverlayTextColorOptions,
 				settingKey: 'subtitleOverlayTextColor',
 				onSelect: handleSubtitleOverlayTextColorSelect,
@@ -298,7 +298,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayBorderStylePopupOpen,
 				onClose: closeSubtitleOverlayBorderStylePopup,
 				contentRef: subtitleOverlayBorderStylePopupContentRef,
-				title: 'Breezyfin Subtitle Border Style',
+				title: 'Breezyfin 字幕边框样式',
 				options: subtitleOverlayBorderStyleOptions,
 				settingKey: 'subtitleOverlayBorderStyle',
 				onSelect: handleSubtitleOverlayBorderStyleSelect,
@@ -309,7 +309,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayBorderColorPopupOpen,
 				onClose: closeSubtitleOverlayBorderColorPopup,
 				contentRef: subtitleOverlayBorderColorPopupContentRef,
-				title: 'Breezyfin Subtitle Border Color',
+				title: 'Breezyfin 字幕边框颜色',
 				options: subtitleOverlayBorderColorOptions,
 				settingKey: 'subtitleOverlayBorderColor',
 				onSelect: handleSubtitleOverlayBorderColorSelect,
@@ -320,7 +320,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayBorderStrengthPopupOpen,
 				onClose: closeSubtitleOverlayBorderStrengthPopup,
 				contentRef: subtitleOverlayBorderStrengthPopupContentRef,
-				title: 'Breezyfin Subtitle Box Border Strength',
+				title: 'Breezyfin 字幕框边框粗细',
 				options: subtitleOverlayBorderStrengthOptions,
 				settingKey: 'subtitleOverlayBorderStrength',
 				onSelect: handleSubtitleOverlayBorderStrengthSelect,
@@ -331,8 +331,8 @@ const SettingsPopups = ({
 				open: subtitleOverlayOutlineSizePopupOpen,
 				onClose: closeSubtitleOverlayOutlineSizePopup,
 				contentRef: subtitleOverlayOutlineSizePopupContentRef,
-				title: 'Breezyfin Subtitle Outline Size',
-				message: 'Controls the pixel width of Breezyfin DOM subtitle outlines.',
+				title: 'Breezyfin 字幕描边宽度',
+				message: '控制 Breezyfin DOM 字幕描边的像素宽度。',
 				valueLabel: subtitleOverlayOutlineSizeLabel,
 				onDecrease: handleSubtitleOverlayOutlineSizeDecrease,
 				onIncrease: handleSubtitleOverlayOutlineSizeIncrease,
@@ -343,7 +343,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayShadowDistancePopupOpen,
 				onClose: closeSubtitleOverlayShadowDistancePopup,
 				contentRef: subtitleOverlayShadowDistancePopupContentRef,
-				title: 'Breezyfin Subtitle Shadow Distance',
+				title: 'Breezyfin 字幕阴影距离',
 				options: subtitleOverlayShadowDistanceOptions,
 				settingKey: 'subtitleOverlayShadowDistance',
 				onSelect: handleSubtitleOverlayShadowDistanceSelect,
@@ -354,7 +354,7 @@ const SettingsPopups = ({
 				open: subtitleOverlayShadowAnglePopupOpen,
 				onClose: closeSubtitleOverlayShadowAnglePopup,
 				contentRef: subtitleOverlayShadowAnglePopupContentRef,
-				title: 'Breezyfin Subtitle Shadow Angle',
+				title: 'Breezyfin 字幕阴影角度',
 				options: subtitleOverlayShadowAngleOptions,
 				settingKey: 'subtitleOverlayShadowAngle',
 				onSelect: handleSubtitleOverlayShadowAngleSelect,
@@ -367,7 +367,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={audioLangPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Preferred Audio Language</BodyText>
+					<BodyText className={css.popupTitle}>首选音频语言</BodyText>
 					<div className={css.popupOptions}>
 						{languageOptions.map((option) => (
 							<Button
@@ -390,7 +390,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={capabilityProbeRefreshPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Capability Probe Refresh Period</BodyText>
+					<BodyText className={css.popupTitle}>能力探测刷新周期</BodyText>
 					{capabilityProbeRefreshOptions.map((option) => (
 						<Button
 							key={option.value}
@@ -411,7 +411,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={subtitleLangPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Preferred Subtitle Language</BodyText>
+					<BodyText className={css.popupTitle}>首选字幕语言</BodyText>
 					<div className={css.popupOptions}>
 						{languageOptions.map((option) => (
 							<Button
@@ -434,9 +434,9 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={subtitleBurnInTextCodecsPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Subtitle Burn-in Formats</BodyText>
+					<BodyText className={css.popupTitle}>字幕烧录格式</BodyText>
 					<BodyText className={css.popupMessage}>
-						Manual mode only. Selected formats will prefer burn-in/transcoding. Leave empty to keep quality-first playback.
+						仅手动模式。所选格式将优先使用烧录/转码。留空以保持质量优先播放。
 					</BodyText>
 					<div className={css.popupOptions}>
 						{subtitleBurnInTextCodecOptions.map((option) => (
@@ -452,7 +452,7 @@ const SettingsPopups = ({
 						))}
 					</div>
 					<div className={css.popupActions}>
-						<Button onClick={closeSubtitleBurnInTextCodecsPopup} className={css.popupOption}>Done</Button>
+						<Button onClick={closeSubtitleBurnInTextCodecsPopup} className={css.popupOption}>完成</Button>
 					</div>
 				</div>
 			</Popup>
@@ -461,7 +461,7 @@ const SettingsPopups = ({
 				open: assSubtitleRendererPopupOpen,
 				onClose: closeAssSubtitleRendererPopup,
 				contentRef: assSubtitleRendererPopupContentRef,
-				title: 'ASS/SSA Subtitle Renderer',
+				title: 'ASS/SSA 字幕渲染器',
 				options: assSubtitleRendererOptions,
 				settingKey: 'assSubtitleRenderer',
 				onSelect: handleAssSubtitleRendererSelect,
@@ -472,7 +472,7 @@ const SettingsPopups = ({
 				open: bitmapSubtitleRendererPopupOpen,
 				onClose: closeBitmapSubtitleRendererPopup,
 				contentRef: bitmapSubtitleRendererPopupContentRef,
-				title: 'Bitmap Subtitle Renderer',
+				title: '位图字幕渲染器',
 				options: bitmapSubtitleRendererOptions,
 				settingKey: 'bitmapSubtitleRenderer',
 				onSelect: handleBitmapSubtitleRendererSelect,
@@ -485,7 +485,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={navbarThemePopupContentRef} className={`${popupStyles.popupSurface} ${css.nativeThemePopupContent}`}>
-					<BodyText className={css.popupTitle}>Navigation Theme</BodyText>
+					<BodyText className={css.popupTitle}>导航栏主题</BodyText>
 					<div className={css.nativeThemePopupOptions}>
 						{navbarThemeOptions.map((option) => (
 							<Button
@@ -507,8 +507,8 @@ const SettingsPopups = ({
 				open: subtitleOverlaySizePopupOpen,
 				onClose: closeSubtitleOverlaySizePopup,
 				contentRef: subtitleOverlaySizePopupContentRef,
-				title: 'Breezyfin Subtitle Font Size',
-				message: 'Controls Breezyfin DOM subtitles. Libass subtitles keep authored ASS/SSA sizing.',
+				title: 'Breezyfin 字幕字号',
+				message: '控制 Breezyfin DOM 字幕。Libass 字幕保留 ASS/SSA 原始大小。',
 				valueLabel: subtitleOverlayFontSizeLabel,
 				onDecrease: handleSubtitleOverlayFontSizeDecrease,
 				onIncrease: handleSubtitleOverlayFontSizeIncrease,
@@ -521,7 +521,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={subtitleOverlayPositionPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Breezyfin Subtitle Position</BodyText>
+					<BodyText className={css.popupTitle}>Breezyfin 字幕位置</BodyText>
 					<div className={css.popupOptions}>
 						{subtitleOverlayPositionOptions.map((option) => (
 							<Button
@@ -544,7 +544,7 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={subtitleOverlayBackgroundPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Breezyfin Subtitle Background</BodyText>
+					<BodyText className={css.popupTitle}>Breezyfin 字幕背景</BodyText>
 					<div className={css.popupOptions}>
 						{subtitleOverlayBackgroundOptions.map((option) => (
 							<Button
@@ -567,20 +567,20 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={playNextPromptModePopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Play Next Prompt Mode</BodyText>
+					<BodyText className={css.popupTitle}>继续播放提示模式</BodyText>
 					<Button
 						className={css.popupOption}
 						selected={settings.playNextPromptMode === 'segmentsOnly'}
 						onClick={setSegmentsOnlyPromptMode}
 					>
-						Outro/Credits Only
+						仅片尾/演职员表
 					</Button>
 					<Button
 						className={css.popupOption}
 						selected={settings.playNextPromptMode !== 'segmentsOnly'}
 						onClick={setSegmentsOrLast60PromptMode}
 					>
-						Segments or Last 60s
+						分段或最后 60 秒
 					</Button>
 				</div>
 			</Popup>
@@ -591,13 +591,13 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={logoutConfirmPopupContentRef} className={`${popupStyles.popupSurface} ${css.popupContent}`}>
-					<BodyText className={css.popupTitle}>Sign Out</BodyText>
+					<BodyText className={css.popupTitle}>退出登录</BodyText>
 					<BodyText className={css.popupMessage}>
-						Are you sure you want to sign out from {serverInfo?.ServerName || 'this server'}?
+						确定要从 {serverInfo?.ServerName || '此服务器'} 注销吗？
 					</BodyText>
 					<div className={css.popupActions}>
-						<Button onClick={closeLogoutConfirm} className={css.popupOption}>Cancel</Button>
-						<Button onClick={handleLogoutConfirm} className={`${css.popupOption} ${css.dangerButton}`}>Sign Out</Button>
+						<Button onClick={closeLogoutConfirm} className={css.popupOption}>取消</Button>
+						<Button onClick={handleLogoutConfirm} className={`${css.popupOption} ${css.dangerButton}`}>退出登录</Button>
 					</div>
 				</div>
 			</Popup>
@@ -608,14 +608,14 @@ const SettingsPopups = ({
 				css={popupShellCss}
 			>
 				<div ref={logsPopupContentRef} className={`${popupStyles.popupSurface} ${css.logPopupContent}`}>
-					<BodyText className={css.popupTitle}>Recent Logs</BodyText>
+					<BodyText className={css.popupTitle}>最近日志</BodyText>
 					<div className={css.logActions}>
-						<Button size="small" onClick={handleClearLogs} className={css.popupOption}>Clear Logs</Button>
-						<Button size="small" onClick={closeLogsPopup} className={css.popupOption}>Close</Button>
+						<Button size="small" onClick={handleClearLogs} className={css.popupOption}>清空日志</Button>
+						<Button size="small" onClick={closeLogsPopup} className={css.popupOption}>关闭</Button>
 					</div>
 					<Scroller className={css.logScroller}>
 						{appLogs.length === 0 && (
-							<BodyText className={css.mutedText}>No logs captured yet.</BodyText>
+							<BodyText className={css.mutedText}>尚未捕获任何日志。</BodyText>
 						)}
 						{appLogs.map((entry, index) => (
 							<div key={`${entry.ts}-${index}`} className={css.logEntry}>
@@ -642,14 +642,14 @@ const SettingsPopups = ({
 						<BodyText className={css.popupMessage}>{cacheWipeError}</BodyText>
 					) : null}
 					<div className={css.popupActions}>
-						<Button onClick={closeWipeCacheConfirm} disabled={cacheWipeInProgress} className={css.popupOption}>Cancel</Button>
+						<Button onClick={closeWipeCacheConfirm} disabled={cacheWipeInProgress} className={css.popupOption}>取消</Button>
 						<Button
 							onClick={handleWipeCacheConfirm}
 							className={`${css.popupOption} ${css.dangerButton}`}
 							disabled={cacheWipeInProgress}
 							selected={cacheWipeInProgress}
 						>
-							{cacheWipeInProgress ? 'Wiping...' : wipeCacheActionLabel}
+							{cacheWipeInProgress ? '清除中...' : wipeCacheActionLabel}
 						</Button>
 					</div>
 				</div>

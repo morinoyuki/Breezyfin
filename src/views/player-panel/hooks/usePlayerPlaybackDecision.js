@@ -46,7 +46,7 @@ export const usePlayerPlaybackDecision = ({
 		exitInProgressRef.current = false;
 	}, [commitPlaybackDecisionPrompt, exitInProgressRef, itemId]);
 
-	const suspendPlaybackForDecision = useCallback((message = 'Waiting for playback decision...') => {
+	const suspendPlaybackForDecision = useCallback((message = '正在等待播放决策...') => {
 		const video = videoRef.current;
 		if (video && !video.paused) {
 			video.pause();
@@ -62,7 +62,7 @@ export const usePlayerPlaybackDecision = ({
 		seekSeconds = resolveVideoSeekSeconds(videoRef.current) || currentTimeRef.current || 0,
 		extra = {},
 		toast = null,
-		loadingMessage = 'Restarting stream...'
+		loadingMessage = '正在重启串流...'
 	} = {}) => {
 		playbackOverrideRef.current = buildPlaybackOverride({
 			baseOptions: playbackOverrideRef.current || playbackOptions,
@@ -110,7 +110,7 @@ export const usePlayerPlaybackDecision = ({
 		playbackDecisionRequestRef.current = null;
 		commitPlaybackDecisionPrompt(null);
 		setLoading(false);
-		setLoadingStatusMessage('Loading...');
+		setLoadingStatusMessage('加载中...');
 	}, [
 		commitPlaybackDecisionPrompt,
 		exitInProgressRef,
@@ -210,13 +210,13 @@ export const usePlayerPlaybackDecision = ({
 		}
 		suspendPlaybackForDecision(
 			resolvedType === 'unsupported-audio-switch'
-				? 'Waiting for audio decision...'
+				? '等待音频决策...'
 				: ([
 					'dynamic-range-fallback',
 					'dolby-vision-original-quality'
 				].includes(resolvedType)
-					? 'Waiting for video quality decision...'
-					: 'Waiting for subtitle decision...')
+					? '等待视频质量决策...'
+					: '等待字幕决策...')
 		);
 		commitPlaybackDecisionPrompt({
 			...request,
@@ -289,7 +289,7 @@ export const usePlayerPlaybackDecision = ({
 					message: `Using ${playbackDecisionPrompt.proposedTrack?.displayTitle || playbackDecisionPrompt.proposedTrack?.title || playbackDecisionPrompt.proposedTrack?.codec || 'supported audio track'}.`,
 					severity: 'warning'
 				},
-				loadingMessage: 'Switching audio track...'
+				loadingMessage: '正在切换音轨...'
 			});
 			return;
 		}

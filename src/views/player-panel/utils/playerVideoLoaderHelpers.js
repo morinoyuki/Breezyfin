@@ -241,7 +241,7 @@ export const selectHlsEnginePreference = ({
 export const getPlaybackStartupFailureMessage = (dynamicRangeInfo = null) => {
 	const rangeId = String(dynamicRangeInfo?.id || '').toUpperCase();
 	if (['DV', 'HDR10', 'HDR10_PLUS', 'HLG'].includes(rangeId)) {
-		const label = dynamicRangeInfo?.label || (rangeId === 'DV' ? 'Dolby Vision' : 'HDR');
+		const label = dynamicRangeInfo?.label || (rangeId === 'DV' ? '杜比视界' : 'HDR');
 		return `${label} playback did not become ready after rebuilding the session. ` +
 			'This runtime may not support the selected stream; try Force Transcoding or test on TV hardware.';
 	}

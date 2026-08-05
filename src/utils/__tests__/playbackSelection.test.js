@@ -464,6 +464,56 @@ describe('playbackSelection subtitle compatibility', () => {
 	});
 });
 
+describe('playbackSelection multi-channel audio safety', () => {
+	beforeEach(() => {
+		getRuntimePlatformCapabilities.mockReturnValue({
+			playback: {
+				supportsDolbyVision: true,
+				supportsDolbyVisionInMkv: true,
+				maxAudioChannels: 2
+			}
+		});
+	});
+
+	it('forces transcode for 5.1 sources on stereo-only capability', () => {
+		const mediaSource = {
+			...createVideoAudioMediaSource({supportsTranscoding: true}),
+			TranscodingUrl: '/Videos/item/master.m3u8',
+			MediaStreams: [
+				{Type: 'Video', Codec: 'h264', VideoRangeType: 'SDR'},
+				{Type: 'Audio', Codec: 'eac3', Index: 0, Channels: 6, IsDefault: true}
+			]
+		};
+
+		expect(determinePlayMethod(mediaSource)).toBe('Transcode');
+	});
+
+	it('forces transcode when the selected audio stream exceeds the limit', () => {
+		const mediaSource = {
+			...createVideoAudioMediaSource({supportsTranscoding: true}),
+			TranscodingUrl: '/Videos/item/master.m3u8',
+			MediaStreams: [
+				{Type: 'Video', Codec: 'h264', VideoRangeType: 'SDR'},
+				{Type: 'Audio', Codec: 'aac', Index: 0, Channels: 2},
+				{Type: 'Audio', Codec: 'eac3', Index: 1, Channels: 6, IsDefault: true}
+			]
+		};
+
+		expect(determinePlayMethod(mediaSource, {selectedAudioStreamIndex: 1})).toBe('Transcode');
+	});
+
+	it('keeps DirectPlay available when audio is stereo and the capability matches', () => {
+		const mediaSource = {
+			...createVideoAudioMediaSource({supportsTranscoding: true}),
+			MediaStreams: [
+				{Type: 'Video', Codec: 'h264', VideoRangeType: 'SDR'},
+				{Type: 'Audio', Codec: 'aac', Index: 0, Channels: 2, IsDefault: true}
+			]
+		};
+
+		expect(determinePlayMethod(mediaSource)).toBe('DirectPlay');
+	});
+});
 describe('playbackSelection dynamic-range source preference', () => {
 	beforeEach(() => {
 		getRuntimePlatformCapabilities.mockReturnValue({

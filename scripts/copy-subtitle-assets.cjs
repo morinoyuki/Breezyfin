@@ -140,6 +140,14 @@ const copyJassubStaticAssets = () => {
 	copyDirectoryRecursive(workerSourceDir, path.join(jassubOutputDir, 'worker'));
 	copyDirectoryRecursive(wasmSourceDir, path.join(jassubOutputDir, 'wasm'));
 	fs.copyFileSync(fontSource, path.join(jassubOutputDir, 'default.woff2'));
+
+	// Stage the CJK fallback font alongside the Latin default so jassub can
+	// fall back to it (Noto Sans SC, SIL OFL 1.1, includes Latin + CJK).
+	const jassubCjkFontSource = path.join(jassubSourceDir, 'noto-sans-sc.otf');
+	if (!fs.existsSync(jassubCjkFontSource)) {
+		throw new Error(`Missing JASSUB CJK font asset: ${jassubCjkFontSource}`);
+	}
+	fs.copyFileSync(jassubCjkFontSource, path.join(jassubOutputDir, 'noto-sans-sc.otf'));
 	validateJassubStaticAssetEntrySource(fs.readFileSync(entrySource, 'utf8'), {
 		fileName: entrySource
 	});
@@ -214,6 +222,16 @@ if (!fs.existsSync(fallbackFontSource)) {
 }
 fs.copyFileSync(fallbackFontSource, fallbackFontOutput);
 
+// Bundled CJK-capable subtitle fallback. libass/jassub use this when the
+// referenced ASS font has no glyph for a given character (Noto Sans SC is
+// SIL OFL 1.1 licensed and includes both Latin and CJK glyphs).
+const cjkFontSource = path.join(projectRoot, 'assets', 'fonts', 'NotoSansSC-Regular.otf');
+const cjkFontOutput = path.join(outputDir, 'breezyfin-subtitle-cjk.otf');
+if (!fs.existsSync(cjkFontSource)) {
+	throw new Error(`Missing CJK subtitle fallback font: ${cjkFontSource}`);
+}
+fs.copyFileSync(cjkFontSource, cjkFontOutput);
+
 for (const requiredNotice of [projectLicenseSource, thirdPartyNoticesSource]) {
 	if (!fs.existsSync(requiredNotice)) {
 		throw new Error(`Missing required release notice: ${requiredNotice}`);
@@ -226,5 +244,5 @@ console.log(
 	`Copied ${LIBASS_ASSET_NAMES.length} libass-wasm assets, ` +
 	'static JASSUB assets, ' +
 	'bitmap subtitle assets, ' +
-	`1 fallback font, and release notices to ${outputDir} (${packMode})`
+	`1 Latin fallback font, 1 CJK fallback font, and release notices to ${outputDir} (${packMode})`
 );

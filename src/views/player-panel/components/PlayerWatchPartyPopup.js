@@ -106,10 +106,10 @@ const PlayerWatchPartyPopup = ({
 				<BodyText className={css.title}>JellyWatchParty</BodyText>
 				<div className={css.body}>
 				{availability?.available !== true ? (
-					<BodyText>Watch parties are unavailable for this server session.</BodyText>
+					<BodyText>此服务器会话不支持观看派对。</BodyText>
 				) : null}
 				{availability?.available === true && state?.connectionState !== 'open' ? (
-					<BodyText>Connecting to the session server...</BodyText>
+					<BodyText>正在连接到会话服务器...</BodyText>
 				) : null}
 				{errorMessage ? <BodyText>{errorMessage}</BodyText> : null}
 				{state?.room ? (
@@ -124,7 +124,7 @@ const PlayerWatchPartyPopup = ({
 							))}
 						</div>
 						<Input
-							placeholder="Message"
+							placeholder="消息"
 							value={chatText}
 							onChange={handleChatTextChange}
 							className="bf-input-trigger"
@@ -138,16 +138,16 @@ const PlayerWatchPartyPopup = ({
 					</>
 				) : (
 					<>
-						<BodyText>Create a room for {item?.Name || 'the current item'} or join an existing room.</BodyText>
+						<BodyText>为 “{item?.Name || '当前项目'}” 创建房间或加入现有房间。</BodyText>
 						<Input
-							placeholder="Room name"
+							placeholder="房间名称"
 							value={roomName}
 							onChange={handleRoomNameChange}
 							className="bf-input-trigger"
 						/>
 						<Input
 							type="password"
-							placeholder="Room password (optional)"
+							placeholder="房间密码（可选）"
 							value={password}
 							onChange={handlePasswordChange}
 							className="bf-input-trigger"
@@ -172,7 +172,7 @@ const PlayerWatchPartyPopup = ({
 				)}
 				</div>
 				<div className={css.actions}>
-					<PanelActionButton onClick={onClose} disabled={Boolean(pendingAction)}>Close</PanelActionButton>
+					<PanelActionButton onClick={onClose} disabled={Boolean(pendingAction)}>关闭</PanelActionButton>
 				</div>
 			</div>
 		</Popup>

@@ -176,7 +176,7 @@ const LibraryPanel = ({
 
 	return (
 		<Panel {...rest}>
-			<Header title={library?.Name || 'Library'} />
+			<Header title={library?.Name || '媒体库'} />
 			{topToolbar}
 			<div
 				className={`${css.libraryContainer} ${browseCss.panelLayout}`}
@@ -185,7 +185,7 @@ const LibraryPanel = ({
 				<MediaPanelBackdrop item={items[0] || null} />
 				<MediaBrowseOverlay compact expanded={searchExpanded} actionCount={2}>
 								<MediaFilterControls
-									title="Library"
+									title="媒体库"
 									triggerSpotlightId="library-filter-trigger"
 									activeFilterCount={activeFilterCount}
 									filterPopupOpen={filterPopupOpen}
@@ -210,7 +210,7 @@ const LibraryPanel = ({
 				</MediaBrowseOverlay>
 				<div className={`${css.virtualGridViewport} ${browseCss.panelResultsOffset}`}>
 					{loading ? <div className={css.loading}><BreezyLoadingOverlay /></div> : null}
-					{!loading && items.length === 0 ? <div className={css.emptyState}><BodyText>No items found.</BodyText></div> : null}
+					{!loading && items.length === 0 ? <div className={css.emptyState}><BodyText>未找到项目。</BodyText></div> : null}
 					<PanelLandscapeVirtualGrid
 						id="library-grid"
 						className={css.virtualGrid}

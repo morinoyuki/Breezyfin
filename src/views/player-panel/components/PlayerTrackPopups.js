@@ -17,7 +17,7 @@ const PlayerTrackPopups = ({
 		<PlayerTrackPopup
 			open={audioOpen}
 			onClose={onAudioClose}
-			title="Audio Track"
+			title="音轨"
 			tracks={audioTracks}
 			currentTrack={currentAudioTrack}
 			onTrackClick={onAudioTrackClick}
@@ -26,13 +26,13 @@ const PlayerTrackPopups = ({
 		<PlayerTrackPopup
 			open={subtitleOpen}
 			onClose={onSubtitleClose}
-			title="Subtitles"
+			title="字幕"
 			tracks={subtitleTracks}
 			currentTrack={currentSubtitleTrack}
 			onTrackClick={onSubtitleTrackClick}
 			getTrackLabel={getTrackLabel}
 			includeOffOption
-			offLabel="Off"
+			offLabel="关"
 		/>
 	</>
 );

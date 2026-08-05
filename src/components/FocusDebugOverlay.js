@@ -217,22 +217,22 @@ const FocusDebugOverlay = ({enabled = false, currentView = '-', inputMode = '-',
 	}, [enabled, syncFocusSnapshot]);
 
 	const rows = useMemo(() => [
-		{label: 'View', value: currentView || '-'},
+		{label: '查看', value: currentView || '-'},
 		{label: 'Input', value: inputMode || '-'},
 		{label: 'Spotlight', value: focusState.mode},
-		{label: 'Active', value: focusState.active},
-		{label: 'Focus Target', value: focusState.focusTarget},
+		{label: '活跃', value: focusState.active},
+		{label: '焦点目标', value: focusState.focusTarget},
 		{label: 'Spotlight ID', value: focusState.spotlightId},
 		{label: 'Role', value: focusState.role},
-		{label: 'Last Key', value: lastKey},
-		{label: 'Last Pointer', value: lastPointer},
-		{label: 'Last Click', value: lastClick},
-		{label: 'Last Focus', value: lastFocus},
-		{label: 'Last Key Detail', value: lastKeyDetail},
-		{label: 'Last Scroller', value: lastScrollerDebug},
-		{label: 'Last Library Click', value: lastLibraryClick},
-		{label: 'Last Item Select', value: lastItemSelect},
-		{label: 'Last Navigate', value: formatNavigateDebug(lastNavigateDebug)}
+		{label: '最近按键', value: lastKey},
+		{label: '最近指针', value: lastPointer},
+		{label: '最近点击', value: lastClick},
+		{label: '最近焦点', value: lastFocus},
+		{label: '最近按键详情', value: lastKeyDetail},
+		{label: '最近滚动器', value: lastScrollerDebug},
+		{label: '最近媒体库点击', value: lastLibraryClick},
+		{label: '最近项目选择', value: lastItemSelect},
+		{label: '最近导航', value: formatNavigateDebug(lastNavigateDebug)}
 	], [
 		currentView,
 		focusState.active,
@@ -256,7 +256,7 @@ const FocusDebugOverlay = ({enabled = false, currentView = '-', inputMode = '-',
 
 	return (
 		<div className={css.overlay} aria-hidden>
-			<div className={css.header}>Focus Debug Overlay</div>
+			<div className={css.header}>焦点调试叠加层</div>
 			<div className={css.rows}>
 				{rows.map((row) => (
 					<div key={row.label} className={css.row}>
@@ -265,11 +265,11 @@ const FocusDebugOverlay = ({enabled = false, currentView = '-', inputMode = '-',
 					</div>
 				))}
 			</div>
-			<div className={css.eventsTitle}>Recent Events</div>
+			<div className={css.eventsTitle}>最近事件</div>
 			<div className={css.events}>
 				{recentEvents.length > 0 ? recentEvents.map((entry, index) => (
 					<div key={`${entry}-${index}`} className={css.eventRow}>{entry}</div>
-				)) : <div className={css.eventRow}>No events yet.</div>}
+				)) : <div className={css.eventRow}>暂无事件。</div>}
 			</div>
 		</div>
 	);

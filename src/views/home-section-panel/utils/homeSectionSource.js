@@ -14,7 +14,7 @@ export const fetchHomeSectionPage = async (service, section, {
 		return service.getMyRequests(null, ['Movie', 'Series'], limit, startIndex, userName);
 	}
 	if (section?.source === 'plugin' && section?.pluginSectionId) {
-		if (section.kind === 'Discovery' && section.feed) {
+		if (section.kind === '发现' && section.feed) {
 			const discoveryResponse = await service.getDiscoveryFeed(section.feed, {limit, startIndex});
 			if (discoveryResponse?.available !== true) throw new Error('Discovery feed is unavailable');
 			return {

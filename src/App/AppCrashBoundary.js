@@ -59,7 +59,7 @@ class AppCrashBoundary extends Component {
 			appendAppLog('warn', '[AppCrashBoundary] Ignored non-fatal ResizeObserver warning', event?.message || '');
 			return;
 		}
-		const error = event?.error || new Error(event?.message || 'Unexpected runtime error');
+		const error = event?.error || new Error(event?.message || '运行时意外错误');
 		logCriticalAppError('[AppCrashBoundary] Global error event:', error);
 		this.setState({error});
 	};
@@ -70,7 +70,7 @@ class AppCrashBoundary extends Component {
 			appendAppLog('warn', '[AppCrashBoundary] Ignored non-fatal ResizeObserver rejection', reason?.message || reason || '');
 			return;
 		}
-		const error = reason instanceof Error ? reason : new Error(String(reason || 'Unhandled promise rejection'));
+		const error = reason instanceof Error ? reason : new Error(String(reason || '未处理的 Promise 异常'));
 		logCriticalAppError('[AppCrashBoundary] Unhandled promise rejection:', error);
 		this.setState({error});
 	};
@@ -132,7 +132,7 @@ class AppCrashBoundary extends Component {
 			return (
 				<div className={css.crashRoot}>
 					<div className={`${css.crashCard} bf-error-surface`}>
-						<Heading size="large" spacing="none" className={`${css.crashTitle} bf-error-title`}>Something went wrong</Heading>
+						<Heading size="large" spacing="none" className={`${css.crashTitle} bf-error-title`}>发生错误</Heading>
 						<BodyText className={`${css.crashMessage} bf-error-message`}>
 							{getCrashErrorMessage(error)}
 						</BodyText>
@@ -145,7 +145,7 @@ class AppCrashBoundary extends Component {
 								data-crash-action={CRASH_RECOVERY_ACTIONS.BACK}
 								className="bf-error-action-button"
 							>
-								Back
+								返回
 							</Button>
 							<Button
 								size="large"
@@ -154,7 +154,7 @@ class AppCrashBoundary extends Component {
 								data-crash-action={CRASH_RECOVERY_ACTIONS.HOME}
 								className="bf-error-action-button"
 							>
-								Return Home
+								返回首页
 							</Button>
 						</div>
 					</div>

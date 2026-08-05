@@ -398,7 +398,7 @@ const HeroBanner = ({ items, onPlayClick, isActive = false, variant = 'current' 
 								className={css.heroBannerButton}
 								spotlightId="home-hero-play"
 							>
-								Play
+								播放
 							</Button>
 							<Button
 								size="small"
@@ -406,7 +406,7 @@ const HeroBanner = ({ items, onPlayClick, isActive = false, variant = 'current' 
 								className={css.heroBannerButton}
 								spotlightId="home-hero-more-info"
 							>
-								More Info
+								更多信息
 							</Button>
 						</div>
 						<div className={css.indicators}>

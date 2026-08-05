@@ -99,7 +99,10 @@ export const buildPlaybackCapabilitySnapshot = ({
 		supportsTrueHd: false,
 		nativeHls: webos,
 		nativeHlsFmp4: webos && versionBucket >= 5,
-		maxAudioChannels: webos25Plus ? 8 : 6,
+		// webOS TV speakers and typical TV-attached audio paths output stereo only;
+		// the browser-side audio output does not reliably downmix >2 channel sources.
+		// Server-side downmix is therefore required for any multi-channel audio.
+		maxAudioChannels: 2,
 		maxStreamingBitrate: CLIENT_MAX_STREAMING_BITRATE_BPS,
 		audioCodecs: Array.from(new Set([...commonAudioCodecs, ...pcmAudioCodecs, ...(supportsOpus ? ['opus'] : []), 'flac'])),
 		audioCodecsByContainer: {

@@ -36,7 +36,7 @@ const PosterMediaCard = ({
 	contextBadge = '',
 	contextBadgeExtras = null,
 	ariaLabel,
-	placeholderText = 'No Image',
+	placeholderText = '暂无图片',
 	spottable = true,
 	...rest
 }) => {

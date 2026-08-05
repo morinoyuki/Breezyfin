@@ -52,7 +52,7 @@ const Toolbar = ({
 	const runtimeSuspended = useRuntimeSuspended();
 	const [libraries, setLibraries] = useState([]);
 	const [currentTime, setCurrentTime] = useState(new Date());
-	const [userName, setUserName] = useState('User');
+	const [userName, setUserName] = useState('用户');
 	const [userAvatarUrl, setUserAvatarUrl] = useState('');
 	const [pluginFeatures, setPluginFeatures] = useState({
 		calendar: false,
@@ -92,15 +92,15 @@ const Toolbar = ({
 		if (panelTitle) return panelTitle;
 		if (isHomeSection) return '';
 		if (activeSection === 'library') {
-			return librariesById.get(String(activeLibraryId))?.Name || 'Library';
+			return librariesById.get(String(activeLibraryId))?.Name || '媒体库';
 		}
-		if (activeSection === 'favorites') return 'Favorites';
-		if (activeSection === 'search') return 'Search';
-		if (activeSection === 'watchlist') return 'Watchlist';
-		if (activeSection === 'calendar') return 'Calendar';
-		if (activeSection === 'syncPlay') return 'SyncPlay';
-		if (activeSection === 'watchParty') return 'Watch Party';
-		if (activeSection === 'settings') return 'Settings';
+		if (activeSection === 'favorites') return '收藏';
+		if (activeSection === 'search') return '搜索';
+		if (activeSection === 'watchlist') return '关注列表';
+		if (activeSection === 'calendar') return '日历';
+		if (activeSection === 'syncPlay') return '同步播放';
+		if (activeSection === 'watchParty') return '同步观影派对';
+		if (activeSection === 'settings') return '设置';
 		return activeSection ? activeSection.charAt(0).toUpperCase() + activeSection.slice(1) : '';
 	}, [activeLibraryId, activeSection, isHomeSection, librariesById, panelTitle]);
 
@@ -132,7 +132,7 @@ const Toolbar = ({
 		}
 		setPluginFeatures((current) => ({
 			...current,
-			syncPlay: !current.hideNativeSyncButton && Boolean(user) && user?.Policy?.SyncPlayAccess !== 'None'
+			syncPlay: !current.hideNativeSyncButton && Boolean(user) && user?.Policy?.SyncPlayAccess !== '无'
 		}));
 		setUserAvatarUrl(buildUserAvatarUrl(user));
 	}, [buildUserAvatarUrl]);
@@ -423,7 +423,7 @@ const Toolbar = ({
 			'';
 		const isLibrariesTrigger =
 			spotlightId === 'toolbar-libraries' ||
-			currentControl?.getAttribute?.('aria-label') === 'Libraries';
+			currentControl?.getAttribute?.('aria-label') === '媒体库';
 		if (showLibrariesPopup && code === KeyCodes.DOWN && isLibrariesTrigger) {
 			event.preventDefault();
 			event.stopPropagation();

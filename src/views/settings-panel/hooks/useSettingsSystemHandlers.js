@@ -37,7 +37,7 @@ export const useSettingsSystemHandlers = ({
 			jellyfinService.setActiveServer(entry.serverId, entry.userId);
 			await loadServerInfo();
 		} catch (error) {
-			console.error('Failed to switch server:', error);
+			console.error('切换服务器失败：', error);
 		} finally {
 			setSwitchingServerId(null);
 			refreshSavedServers();
@@ -126,15 +126,15 @@ export const useSettingsSystemHandlers = ({
 			const summary = await wipeAllAppCache({
 				preserveLocalStorageKeys: wipeCacheKeepLogin ? LOCAL_STORAGE_AUTH_KEYS : []
 			});
-			console.info('[Settings] Cache wipe summary:', summary);
+			console.info('[Settings] 缓存清除摘要：', summary);
 			if (typeof window !== 'undefined') {
 				window.setTimeout(() => {
 					window.location.reload();
 				}, 160);
 			}
 		} catch (error) {
-			console.error('Failed to wipe application cache:', error);
-			setCacheWipeError('Failed to wipe app cache. Please restart the TV and try again.');
+			console.error('清除应用缓存失败：', error);
+			setCacheWipeError('清除应用缓存失败。请重启电视后再试。');
 			setCacheWipeInProgress(false);
 		}
 	}, [

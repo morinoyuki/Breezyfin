@@ -33,7 +33,7 @@ describe('SyncPlayGlobalOverlays', () => {
 
 		const notification = screen.getByRole('status');
 		expect(notification.className).toContain('popupSurface');
-		expect(screen.getByRole('button', {name: 'Watch'})).toBeTruthy();
+		expect(screen.getByRole('button', {name: '观看'})).toBeTruthy();
 		expect(screen.queryByRole('button', {name: 'Join playback'})).toBeNull();
 	});
 

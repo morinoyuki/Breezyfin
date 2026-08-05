@@ -33,9 +33,9 @@ const INITIAL_FAVORITES_DISCLOSURES = {
 
 const FILTERS = [
 	{ id: 'all', label: 'All', types: ['Movie', 'Series', 'Episode'] },
-	{ id: 'movies', label: 'Movies', types: ['Movie'] },
+	{ id: 'movies', label: '电影', types: ['Movie'] },
 	{ id: 'series', label: 'Series', types: ['Series'] },
-	{ id: 'episodes', label: 'Episodes', types: ['Episode'] }
+	{ id: 'episodes', label: '分集', types: ['Episode'] }
 ];
 
 const getFilterById = (filterId) => FILTERS.find((filter) => filter.id === filterId) || FILTERS[0];
@@ -381,7 +381,7 @@ const FavoritesPanel = ({
 								size="small"
 								data-item-id={item.Id}
 								onClick={handleUnfavoriteClick}
-								title="Remove from favorites"
+								title="从收藏移除"
 							/>
 							<Button
 								className={`${css.watchedToggleButton} ${item.UserData?.Played ? css.watchedToggleButtonActive : ''}`}
@@ -390,7 +390,7 @@ const FavoritesPanel = ({
 								size="small"
 								data-item-id={item.Id}
 								onClick={handleToggleWatchedClick}
-								title={item.UserData?.Played ? 'Mark as unwatched' : 'Mark as watched'}
+								title={item.UserData?.Played ? '标记为未观看' : '标记为已观看'}
 							/>
 						</div>
 					</div>
@@ -405,7 +405,7 @@ const FavoritesPanel = ({
 
 	return (
 		<Panel {...rest}>
-			<Header title="Favorites" />
+			<Header title="收藏" />
 				<Toolbar
 					activeSection="favorites"
 					isActive={isActive}
@@ -418,7 +418,7 @@ const FavoritesPanel = ({
 				<MediaPanelBackdrop item={favorites[0] || null} />
 				<MediaBrowseOverlay compact expanded={searchExpanded} actionCount={2}>
 					<MediaFilterControls
-						title="Favorites"
+						title="收藏"
 						triggerSpotlightId="favorites-filter-trigger"
 						activeFilterCount={activeFilter === FILTERS[0].id ? 0 : 1}
 						filterPopupOpen={filterPopupOpen}

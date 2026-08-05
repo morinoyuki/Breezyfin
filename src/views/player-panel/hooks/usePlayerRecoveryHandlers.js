@@ -202,7 +202,7 @@ export const usePlayerRecoveryHandlers = ({
 
 		setError(null);
 		setLoading(true);
-		setLoadingStatusMessage('Restarting stream...');
+		setLoadingStatusMessage('正在重启串流...');
 		setPlaying(false);
 		if (toast) {
 			setToastMessage(toast);
@@ -258,12 +258,12 @@ export const usePlayerRecoveryHandlers = ({
 	const showPlaybackError = useCallback((message) => {
 		playbackFailureLockedRef.current = true;
 		stopHlsRecoveryLoop();
-		const errorMessage = message || 'Failed to play video';
+		const errorMessage = message || '视频播放失败';
 		setError(errorMessage);
 		setToastMessage('');
 		setShowControls(true);
 		setLoading(false);
-		setLoadingStatusMessage('Loading...');
+		setLoadingStatusMessage('加载中...');
 		clearStartWatch();
 		if (startupFallbackTimerRef.current) {
 			clearTimeout(startupFallbackTimerRef.current);
@@ -411,7 +411,7 @@ export const usePlayerRecoveryHandlers = ({
 		await handleStop();
 		setError(null);
 		setLoading(true);
-		setLoadingStatusMessage('Restarting stream...');
+		setLoadingStatusMessage('正在重启串流...');
 		if (loadVideoRef.current) {
 			loadVideoRef.current(true);
 		}
@@ -585,7 +585,7 @@ export const usePlayerRecoveryHandlers = ({
 				});
 			}
 			if (typeof loadVideoRef.current === 'function') {
-				setLoadingStatusMessage('Restarting stream...');
+				setLoadingStatusMessage('正在重启串流...');
 				loadVideoRef.current();
 			}
 			return true;
@@ -619,7 +619,7 @@ export const usePlayerRecoveryHandlers = ({
 			});
 			setShowControls(true);
 			setLoading(false);
-			setLoadingStatusMessage('Loading...');
+			setLoadingStatusMessage('加载中...');
 			await requestSubtitleBurnInFallback({
 				subtitleStreamIndex: selectedSubtitle,
 				reason: knownImageSubtitleHardwareBurnInFailure
@@ -659,7 +659,7 @@ export const usePlayerRecoveryHandlers = ({
 			});
 		}
 		if (typeof loadVideoRef.current === 'function') {
-			setLoadingStatusMessage('Restarting stream...');
+			setLoadingStatusMessage('正在重启串流...');
 			loadVideoRef.current();
 		}
 		return true;

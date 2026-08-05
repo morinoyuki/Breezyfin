@@ -34,7 +34,7 @@ export const useSettingsToggleHandlers = ({settings, setSettings}) => {
 		setSettings((previousSettings) => {
 			const nextSettings = {...previousSettings, ...patch};
 			if (!writeBreezyfinSettings(nextSettings)) {
-				console.error('Failed to save settings');
+				console.error('保存设置失败');
 			}
 			return nextSettings;
 		});

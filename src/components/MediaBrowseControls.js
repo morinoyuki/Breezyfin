@@ -16,7 +16,7 @@ const MediaBrowseControls = ({
 	searchVisible = false,
 	searchExpanded = true,
 	searchValue = '',
-	searchPlaceholder = 'Search...',
+	searchPlaceholder = '搜索...',
 	searchSpotlightId,
 	filterSpotlightId,
 	activeFilterCount = 0,

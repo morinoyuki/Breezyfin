@@ -99,7 +99,7 @@ export const useNativeSyncPlay = ({
 		const positionTicks = Number(command.PositionTicks);
 		const run = () => {
 			switch (command.Command) {
-				case 'Pause':
+				case '暂停':
 					video.pause();
 					targetRef.current = null;
 					resetRate();
@@ -133,7 +133,7 @@ export const useNativeSyncPlay = ({
 					targetRef.current = null;
 					resetRate();
 					break;
-				case 'Stop':
+				case '停止':
 					video.pause();
 					video.currentTime = 0;
 					targetRef.current = null;

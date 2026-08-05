@@ -114,7 +114,7 @@ export const usePlayerPlaybackCommands = ({
 
 	const handleRetryPlayback = useCallback(async () => {
 		setError(null);
-		setLoadingStatusMessage('Loading...');
+		setLoadingStatusMessage('加载中...');
 		setToastMessage('');
 		resetRecoveryGuards();
 		playSessionRebuildAttemptsRef.current = 0;

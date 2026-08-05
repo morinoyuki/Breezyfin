@@ -168,13 +168,13 @@ export const usePlayerMediaEventHandlers = ({
 			readyState: Number(video?.readyState) || 0
 		});
 
-		let errorMessage = 'Failed to play video';
+		let errorMessage = '视频播放失败';
 		if (mediaError) {
 			const errorMessages = {
-				1: 'Playback aborted',
-				2: 'Network error',
-				3: 'Decode error',
-				4: 'Format not supported'
+				1: '播放已中止',
+				2: '网络错误',
+				3: '解码错误',
+				4: '格式不支持'
 			};
 			errorMessage = errorMessages[mediaError.code] || `Error code: ${mediaError.code}`;
 			if (

@@ -4,13 +4,13 @@ import {useDismissOnOutsideInteraction} from '../hooks/useDismissOnOutsideIntera
 
 import css from './DebugErrorMenu.module.less';
 
-const defaultGetActionLabel = (action) => action?.label || action?.id || 'Action';
+const defaultGetActionLabel = (action) => action?.label || action?.id || '操作';
 
 const DebugErrorMenu = ({
 	enabled = false,
 	actions = [],
 	onAction,
-	ariaLabel = 'Debug error menu',
+	ariaLabel = '调试错误菜单',
 	open = false,
 	onOpenChange
 }) => {

@@ -185,7 +185,7 @@ export const subscribeSyncPlayState = (service, listener) => {
 };
 
 const getApi = (service) => {
-	if (!service?.api) throw new Error('An authenticated Jellyfin session is required');
+	if (!service?.api) throw new Error('需要经过身份验证的 Jellyfin 会话');
 	return getSyncPlayApi(service.api);
 };
 
@@ -256,7 +256,7 @@ export const syncPlayPing = (service, request) => invoke(
 );
 
 export const sampleSyncPlayClock = async (service, now = Date.now) => {
-	if (!service?.api) throw new Error('An authenticated Jellyfin session is required');
+	if (!service?.api) throw new Error('需要经过身份验证的 Jellyfin 会话');
 	const requestSentAtMs = now();
 	const response = await getTimeSyncApi(service.api).getUtcTime();
 	const responseReceivedAtMs = now();

@@ -195,10 +195,10 @@ describe('WatchlistPanel advanced list layout', () => {
 		);
 
 		expect(layoutProps.scrollable).toBe(true);
-		expect(screen.getByText('Top 5 Shows')).toBeTruthy();
-		expect(screen.getByText('12 episodes')).toBeTruthy();
-		expect(screen.getByText('Top 5 Movies')).toBeTruthy();
-		expect(screen.getByText('3 plays')).toBeTruthy();
+		expect(screen.getByText('电视剧 Top 5')).toBeTruthy();
+		expect(screen.getByText('12 集')).toBeTruthy();
+		expect(screen.getByText('电影 Top 5')).toBeTruthy();
+		expect(screen.getByText('3 次播放')).toBeTruthy();
 	});
 
 	it('contains a Statistics availability failure below the tab navigation', async () => {
@@ -273,7 +273,7 @@ describe('WatchlistPanel advanced list layout', () => {
 			/>
 		);
 
-		const emptyState = await screen.findByText('Your Watchlist is empty.');
+		const emptyState = await screen.findByText('关注列表为空。');
 		expect(emptyState.className).toContain('empty');
 		expect(emptyState.parentElement.className).toContain('watchlistContent');
 	});

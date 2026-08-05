@@ -20,7 +20,7 @@ describe('settings view model', () => {
 	});
 	it('defaults new installations to a 100 Mbps streaming limit', () => {
 		expect(DEFAULT_SETTINGS.maxBitrate).toBe('100');
-		expect(BITRATE_OPTIONS.find((option) => option.value === '100')?.label).toContain('Default');
+		expect(BITRATE_OPTIONS.find((option) => option.value === '100')?.label).toContain('默认');
 	});
 	it('defines stable Settings tab order and section visibility', () => {
 		expect(DEFAULT_SETTINGS_TAB_KEY).toBe('info');
@@ -63,7 +63,7 @@ describe('settings view model', () => {
 			'Auto (Breezyfin Lightweight)'
 		)).toEqual({
 			enabled: false,
-			label: 'Manual mode'
+			label: '手动模式'
 		});
 	});
 
@@ -81,7 +81,7 @@ describe('settings view model', () => {
 			'Auto (libbitsub first)'
 		)).toEqual({
 			enabled: false,
-			label: 'Manual mode'
+			label: '手动模式'
 		});
 	});
 
@@ -91,7 +91,7 @@ describe('settings view model', () => {
 			'ASS, SSA'
 		)).toEqual({
 			enabled: false,
-			label: 'Managed by Smart'
+			label: '由智能模式管理'
 		});
 
 		expect(getSubtitleBurnInFormatsControlState(
@@ -107,7 +107,7 @@ describe('settings view model', () => {
 			'ASS, SSA'
 		)).toEqual({
 			enabled: true,
-			label: 'Disabled'
+			label: '已禁用'
 		});
 	});
 
@@ -140,14 +140,14 @@ describe('settings view model', () => {
 
 	it('provides stable wipe-cache confirmation copy', () => {
 		expect(getWipeCacheConfirmCopy(true)).toEqual({
-			title: 'Wipe Cache (Keep Login)',
-			message: 'This clears cache/storage data and reloads the app, while preserving saved login session data.',
-			actionLabel: 'Wipe (Keep Login) & Reload'
+			title: '清除缓存（保留登录）',
+			message: '这将清除缓存和存储数据并刷新应用，同时保留已保存的登录会话。',
+			actionLabel: '清除（保留登录）并刷新'
 		});
 		expect(getWipeCacheConfirmCopy(false)).toEqual({
-			title: 'Wipe App Cache',
-			message: 'This clears local storage, session storage, cache storage, and IndexedDB, then reloads the app.',
-			actionLabel: 'Wipe & Reload'
+			title: '清除应用缓存',
+			message: '这将清除本地存储、会话存储、缓存存储和 IndexedDB，然后刷新应用。',
+			actionLabel: '清除并刷新'
 		});
 	});
 });

@@ -105,7 +105,7 @@ const ToolbarElegantLayout = ({
 								className={`${css.tabButton} ${activeSection === 'home' ? css.tabSelected : ''}`}
 								spotlightId="toolbar-home"
 							>
-								Home
+								主页
 							</Button>
 							<Button
 								size="small"
@@ -113,7 +113,7 @@ const ToolbarElegantLayout = ({
 								className={`${css.tabButton} ${activeSection === 'favorites' ? css.tabSelected : ''}`}
 								spotlightId="toolbar-favorites"
 							>
-								Favorites
+								收藏
 							</Button>
 							<Button
 								size="small"
@@ -121,7 +121,7 @@ const ToolbarElegantLayout = ({
 								className={`${css.tabButton} ${activeSection === 'search' ? css.tabSelected : ''}`}
 								spotlightId="toolbar-search"
 							>
-								Search
+								搜索
 							</Button>
 							{showWatchlist ? (
 								<Button
@@ -130,7 +130,7 @@ const ToolbarElegantLayout = ({
 									className={`${css.tabButton} ${activeSection === 'watchlist' ? css.tabSelected : ''}`}
 									spotlightId="toolbar-watchlist"
 								>
-									Watchlist
+									关注列表
 								</Button>
 							) : null}
 							{showCalendar ? (
@@ -140,7 +140,7 @@ const ToolbarElegantLayout = ({
 									className={`${css.tabButton} ${activeSection === 'calendar' ? css.tabSelected : ''}`}
 									spotlightId="toolbar-calendar"
 								>
-									Calendar
+									日历
 								</Button>
 							) : null}
 							{showWatchParty ? (
@@ -150,7 +150,7 @@ const ToolbarElegantLayout = ({
 									className={`${css.tabButton} ${activeSection === 'watchParty' ? css.tabSelected : ''}`}
 									spotlightId="toolbar-watch-party"
 								>
-									Watch Party
+									同步观影派对
 								</Button>
 							) : null}
 						</div>
@@ -160,7 +160,7 @@ const ToolbarElegantLayout = ({
 								<SpottableDiv
 									onClick={handleNavigateSyncPlay}
 									className={`${css.iconButton} ${activeSection === 'syncPlay' ? css.selected : ''}`}
-									aria-label="SyncPlay"
+									aria-label="同步播放"
 									spotlightId="toolbar-sync-play"
 								>
 									<Icon size="small">dlna</Icon>
@@ -169,7 +169,7 @@ const ToolbarElegantLayout = ({
 								<SpottableDiv
 									onClick={handleNavigateSearch}
 									className={`${css.iconButton} ${activeSection === 'search' ? css.selected : ''}`}
-									aria-label="Search"
+									aria-label="搜索"
 									spotlightId="toolbar-search-icon"
 								>
 									<Icon size="small">search</Icon>
@@ -178,7 +178,7 @@ const ToolbarElegantLayout = ({
 							<SpottableDiv
 								onClick={handleNavigateSettings}
 								className={`${css.iconButton} ${activeSection === 'settings' ? css.selected : ''}`}
-								aria-label="Appearance"
+								aria-label="外观"
 								spotlightId="toolbar-appearance"
 							>
 								<Icon size="small">gear</Icon>
@@ -187,7 +187,7 @@ const ToolbarElegantLayout = ({
 								<SpottableDiv
 									onClick={handleOpenLibrariesPopup}
 									className={`${css.iconButton} ${activeSection === 'library' ? css.selected : ''}`}
-									aria-label="Libraries"
+									aria-label="媒体库"
 									spotlightId="toolbar-libraries"
 								>
 									<Icon size="small">list</Icon>

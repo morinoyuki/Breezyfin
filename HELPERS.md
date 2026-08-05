@@ -1,4 +1,4 @@
-# Helpers & Hooks Reference
+﻿# Helpers & Hooks Reference
 
 This file documents shared hooks/helpers used across Breezyfin so panel code stays consistent and maintainable.
 
@@ -901,6 +901,8 @@ useToastMessage({ durationMs = 2000, fadeOutMs = 0, stack = false, maxVisible = 
 - `src/views/player-panel/utils/subtitleRendererStatus.js`
   - `normalizeSubtitleRendererFailureReason(reason, fallback?)`
   - `getSubtitleBurnInFallbackStatus({fallbackAllowed?, fallbackAlreadyStarted?, hasFallbackHandler?})`
+- `src/views/player-panel/utils/subtitleCjkFontNames.js`
+  - shared `CJK_FONT_NAME_ALIASES` list, `isCjkFontName(name)` predicate, and `buildCjkAvailableFonts(cjkFontUrl)` helper used by the libass-wasm and JASSUB renderer adapters so Chinese / Japanese / Korean ASS subtitle files route to the bundled Noto Sans SC. Add new aliases here (not in the per-renderer adapter) so the two renderers stay in sync.
 - `src/views/player-panel/utils/subtitleRenderer.js`
   - `normalizeSubtitleEvents(events)` and `normalizeSubtitleText(text, options)` normalize event/raw subtitle payloads into cue objects for the Player overlay. Keep SRT/VTT sanitization and public subtitle APIs here.
   - `findActiveSubtitleCues(events, currentTimeSeconds)` returns normalized active cues for overlay rendering, preserving long-running overlapping cues and sorting active output by ASS layer/source order so higher layers render above lower layers.

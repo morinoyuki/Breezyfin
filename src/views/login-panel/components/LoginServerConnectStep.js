@@ -26,7 +26,7 @@ const LoginServerConnectStep = ({
 			disabled={!serverUrlValid || loading}
 			size="large"
 		>
-			{loading ? 'Connecting...' : 'Connect'}
+			{loading ? '连接中...' : '连接'}
 		</Button>
 	</div>
 );

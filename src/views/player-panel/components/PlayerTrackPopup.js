@@ -17,7 +17,7 @@ const PlayerTrackPopup = ({
 	onTrackClick,
 	getTrackLabel,
 	includeOffOption = false,
-	offLabel = 'Off'
+	offLabel = '关'
 }) => {
 	const popupContentRef = useRef(null);
 	usePopupInitialFocus(open, popupContentRef);

@@ -19,7 +19,7 @@ const IntegrationPanelLayout = ({
 	backdropItem = null,
 	backdropUrl = '',
 	loading = false,
-	loadingMessage = 'Loading...',
+	loadingMessage = '加载中...',
 	emptyMessage = '',
 	errorMessage = '',
 	onRetry = null,
@@ -42,7 +42,7 @@ const IntegrationPanelLayout = ({
 				<div className={css.stateSurface} role="alert">
 					<BodyText>{errorMessage}</BodyText>
 					{typeof onRetry === 'function' ? (
-						<PanelActionButton spotlightId={errorRetryId} onClick={onRetry}>Retry</PanelActionButton>
+						<PanelActionButton spotlightId={errorRetryId} onClick={onRetry}>重试</PanelActionButton>
 					) : null}
 				</div>
 			) : null}

@@ -255,12 +255,12 @@ const MediaRow = ({
 						<BreezyLoadingOverlay label={`Loading ${title}...`} />
 					) : null}
 					{resolvedStatus === 'empty' ? (
-						<BodyText className={css.rowStateMessage}>No items are available in this section.</BodyText>
+						<BodyText className={css.rowStateMessage}>此部分中没有可用项目。</BodyText>
 					) : null}
 					{resolvedStatus === 'error' ? (
 						<>
 							<BodyText className={css.rowStateMessage}>
-								{errorMessage || 'This Home section could not be loaded.'}
+								{errorMessage || '无法加载此主页分区。'}
 							</BodyText>
 							{typeof onRetry === 'function' ? (
 								<SpottableDiv
@@ -270,7 +270,7 @@ const MediaRow = ({
 									role="button"
 									spotlightId={`home-row-retry-${sectionKey}`}
 								>
-									Retry
+									重试
 								</SpottableDiv>
 							) : null}
 						</>

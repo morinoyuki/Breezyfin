@@ -12,6 +12,7 @@ import {hasNonTranscodingDirectPath, usesMkvContainer} from './dolbyVision';
 import {fetchPlaybackInfo} from './network';
 import {appendPlaybackDiagnostic} from '../../../utils/playbackDiagnostics';
 import {resolveAudioTrackIndex} from '../../../utils/trackMatching';
+import {buildPlaybackRequestContext} from '../playbackProfileBuilder';
 
 const parseTranscodeReasons = (transcodingUrl) => {
 	if (!transcodingUrl) return [];
@@ -462,6 +463,152 @@ export const attemptDefaultAudioFallback = async ({
 		adjustment: {
 			type: 'audioFallback',
 			toast: 'Switched audio track for compatibility.'
+		}
+	};
+};
+
+
+const parseAudioTranscodingLimit = (transcodingUrl) => {
+	if (!transcodingUrl) return null;
+	try {
+		const searchParams = new URL(transcodingUrl, 'https://breezyfin.invalid').searchParams;
+		const value = searchParams.get('TranscodingMaxAudioChannels')
+			|| searchParams.get('transcodingMaxAudioChannels')
+			|| searchParams.get('MaxAudioChannels')
+			|| searchParams.get('maxAudioChannels');
+		if (!value) return null;
+		const parsed = parseInt(value, 10);
+		return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+	} catch (_) {
+		return null;
+	}
+};
+
+export const attemptAudioDownmixEnforcement = async ({
+	service,
+	itemId,
+	activePayload,
+	selectedSource,
+	options,
+	data,
+	forceTranscoding,
+	runtimePlaybackCapabilities,
+	createSourceSelectionOptions,
+	diagnostics
+} = {}) => {
+	const addDiagnostic = (entry) => appendPlaybackDiagnostic(diagnostics, {
+		scope: 'playback-probe',
+		stage: 'audio-downmix',
+		...entry
+	});
+
+	if (!Array.isArray(data?.MediaSources)) {
+		addDiagnostic({status: 'skipped', reason: 'no-media-sources'});
+		return null;
+	}
+
+	if (forceTranscoding) {
+		addDiagnostic({status: 'skipped', reason: 'force-transcoding-already'});
+		return null;
+	}
+
+	const channelsLimit = Number(runtimePlaybackCapabilities?.maxAudioChannels);
+	if (!Number.isFinite(channelsLimit) || channelsLimit <= 0) {
+		addDiagnostic({status: 'skipped', reason: 'no-channel-limit'});
+		return null;
+	}
+
+	const findMultiChannelStream = (source) => {
+		if (!source || !Array.isArray(source.MediaStreams)) return null;
+		for (const stream of source.MediaStreams) {
+			if (stream?.Type !== 'Audio') continue;
+			const channels = Number(stream.Channels);
+			if (Number.isFinite(channels) && channels > channelsLimit) return stream;
+		}
+		return null;
+	};
+
+	const multiChannelSource = data.MediaSources.find(findMultiChannelStream);
+	if (!multiChannelSource) {
+		addDiagnostic({status: 'skipped', reason: 'no-multi-channel-audio'});
+		return null;
+	}
+
+	// The codec-profile constraint + MaxAudioChannels hint may be ignored if Jellyfin
+	// allows the multi-channel audio to stream-copy. Detect that and force a re-fetch.
+	if (selectedSource?.TranscodingUrl) {
+		const reportedLimit = parseAudioTranscodingLimit(selectedSource.TranscodingUrl);
+		if (reportedLimit !== null && reportedLimit <= channelsLimit) {
+			addDiagnostic({
+				status: 'skipped',
+				reason: 'transcoding-already-respects-limit',
+				message: `Source is already transcoding with MaxAudioChannels=${reportedLimit}.`
+			});
+			return null;
+		}
+	}
+
+	addDiagnostic({
+		status: 'applied',
+		reason: 'multi-channel-audio-needs-downmix',
+		message: `Detected audio with Channels=${multiChannelSource.Channels ?? '?'} > ${channelsLimit}; requesting server-side stereo downmix.`
+	});
+
+	let downmixPayload;
+	try {
+		const {payload} = buildPlaybackRequestContext({
+			...options,
+			mediaSourceId: selectedSource?.Id || options?.mediaSourceId,
+			audioStreamIndex: toInteger(activePayload?.AudioStreamIndex) ?? options?.audioStreamIndex,
+			subtitleStreamIndex: toInteger(activePayload?.SubtitleStreamIndex),
+			forceTranscoding: true
+		});
+		downmixPayload = payload;
+	} catch (payloadError) {
+		addDiagnostic({status: 'failed', reason: 'payload-build-failed', message: payloadError?.message});
+		return null;
+	}
+
+	let downmixData;
+	try {
+		downmixData = await fetchPlaybackInfo(service, itemId, downmixPayload);
+	} catch (fetchError) {
+		addDiagnostic({status: 'failed', reason: 'fetch-failed', message: fetchError?.message || 'Force-transcode fetch failed.'});
+		return null;
+	}
+
+	if (!downmixData?.MediaSources?.length) {
+		addDiagnostic({status: 'failed', reason: 'empty-playback-info', message: 'Force-transcode playback info returned no media sources.'});
+		return null;
+	}
+
+	const downmixSelection = selectMediaSource(
+		downmixData.MediaSources,
+		createSourceSelectionOptions({
+			preferredMediaSourceId: selectedSource?.Id || options?.mediaSourceId,
+			sourceForceTranscoding: true
+		})
+	);
+	if (downmixSelection.index > 0) {
+		downmixData.MediaSources = reorderMediaSources(downmixData.MediaSources, downmixSelection.index);
+	}
+	const downmixSelectedSource = downmixData.MediaSources[0] || null;
+	if (!downmixSelectedSource?.TranscodingUrl) {
+		addDiagnostic({
+			status: 'failed',
+			reason: 'no-transcoding-url',
+			message: 'Force-transcode fetch returned no TranscodingUrl; falling back to original data.'
+		});
+		return null;
+	}
+
+	return {
+		data: downmixData,
+		selectedSource: downmixSelectedSource,
+		activePayload: downmixPayload,
+		adjustment: {
+			type: 'audioDownmixEnforcement',
+			toast: 'Multi-channel audio: switching to server-side stereo downmix.'
 		}
 	};
 };

@@ -68,7 +68,7 @@ export class JellyfinWebSocketSession {
 		this.keepaliveTimer = null;
 		const socket = this.socket;
 		this.socket = null;
-		if (socket && socket.readyState < 2) socket.close(1000, 'Session ended');
+		if (socket && socket.readyState < 2) socket.close(1000, '会话已结束');
 		this._emit('ConnectionStateChanged', {state: 'closed'});
 	}
 

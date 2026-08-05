@@ -108,7 +108,7 @@ const SettingsSections = ({
 		audioCodecs: false
 	});
 	const activeSectionKeys = getSettingsSectionKeys(activeTabKey);
-	const userIdLabel = userInfo?.Id ? `${userInfo.Id.substring(0, 8)}...` : 'Unknown';
+	const userIdLabel = userInfo?.Id ? `${userInfo.Id.substring(0, 8)}...` : '未知';
 	const smartSubtitleTranscodingEnabled = isSmartSubtitleHandlingEnabled(settings);
 	const assSubtitleRendererControl = getAssSubtitleRendererControlState(settings, assSubtitleRendererLabel);
 	const bitmapSubtitleRendererControl = getBitmapSubtitleRendererControlState(settings, bitmapSubtitleRendererLabel);
@@ -137,7 +137,7 @@ const SettingsSections = ({
 		<div className={css.content}>
 			<PanelTabNavigation
 				activeId={activeTabKey}
-				ariaLabel="Settings categories"
+				ariaLabel="设置分类"
 				onSelect={handleTabClick}
 				spotlightIdPrefix="settings-tab"
 				tabs={SETTINGS_PANEL_TABS}
@@ -145,16 +145,16 @@ const SettingsSections = ({
 
 			{shouldRenderSection('serverInfo') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Server Information</BodyText>
+					<BodyText className={css.sectionTitle}>服务器信息</BodyText>
 					{loading ? (
 						<div className={css.loadingItem}>
 							<Spinner size="small" />
 						</div>
 					) : (
 						<>
-							<Item className={css.infoItem} label="Server Name" slotAfter={serverInfo?.ServerName || 'Unknown'} />
-							<Item className={css.infoItem} label="Server Version" slotAfter={serverInfo?.Version || 'Unknown'} />
-							<Item className={css.infoItem} label="Server URL" slotAfter={serverUrl || 'Not connected'} />
+							<Item className={css.infoItem} label="服务器名称" slotAfter={serverInfo?.ServerName || '未知'} />
+							<Item className={css.infoItem} label="服务器版本" slotAfter={serverInfo?.Version || '未知'} />
+							<Item className={css.infoItem} label="服务器地址" slotAfter={serverUrl || '未连接'} />
 						</>
 					)}
 				</section>
@@ -162,9 +162,9 @@ const SettingsSections = ({
 
 			{shouldRenderSection('savedServers') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Saved Servers</BodyText>
+					<BodyText className={css.sectionTitle}>已保存的服务器</BodyText>
 					{savedServers.length === 0 && (
-						<BodyText className={css.mutedText}>No saved servers yet. Sign in to add one.</BodyText>
+						<BodyText className={css.mutedText}>尚未保存任何服务器。登录以添加一个。</BodyText>
 					)}
 					<div className={css.serverList}>
 						{savedServers.map((entry) => {
@@ -172,7 +172,7 @@ const SettingsSections = ({
 							return (
 								<div key={key} className={`${css.serverCard} ${entry.isActive ? css.activeCard : ''}`}>
 									<div className={css.serverCardMain}>
-										<div className={css.serverTitle}>{entry.serverName || 'Jellyfin Server'}</div>
+										<div className={css.serverTitle}>{entry.serverName || 'Jellyfin 服务器'}</div>
 										<div className={css.serverMeta}>{entry.username} - {entry.url}</div>
 									</div>
 									<div className={css.serverCardActions}>
@@ -183,7 +183,7 @@ const SettingsSections = ({
 											onClick={handleSwitchServerClick}
 											selected={switchingServerId === key}
 										>
-											{entry.isActive ? 'Active' : switchingServerId === key ? 'Switching...' : 'Switch'}
+											{entry.isActive ? '活跃' : switchingServerId === key ? '切换中...' : '切换'}
 										</Button>
 										<Button
 											size="small"
@@ -191,7 +191,7 @@ const SettingsSections = ({
 											data-server-key={key}
 											onClick={handleForgetServerClick}
 										>
-											Forget
+											忘记
 										</Button>
 									</div>
 								</div>
@@ -203,21 +203,21 @@ const SettingsSections = ({
 
 			{shouldRenderSection('account') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Account</BodyText>
+					<BodyText className={css.sectionTitle}>账户</BodyText>
 					{loading ? (
 						<div className={css.loadingItem}>
 							<Spinner size="small" />
 						</div>
 					) : (
 						<>
-							<Item className={css.infoItem} label="Username" slotAfter={userInfo?.Name || 'Unknown'} />
-							<Item className={css.infoItem} label="User ID" slotAfter={userIdLabel} />
+							<Item className={css.infoItem} label="用户名" slotAfter={userInfo?.Name || '未知'} />
+							<Item className={css.infoItem} label="用户 ID" slotAfter={userIdLabel} />
 							<Button
 								className={css.logoutButton}
 								onClick={openLogoutConfirm}
 								icon="closex"
 							>
-								Sign Out
+								退出登录
 							</Button>
 						</>
 					)}
@@ -226,64 +226,64 @@ const SettingsSections = ({
 
 			{shouldRenderSection('homeRows') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Home Rows</BodyText>
+					<BodyText className={css.sectionTitle}>主页行</BodyText>
 					<SwitchItem
 						className={css.switchItem}
 						selected={integrationPreferences?.homeSource === 'server'}
 						onToggle={handleToggleServerHome}
 					>
-						Use server-configured Home rows
+						使用服务器配置的主页行
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={integrationPreferences?.watchlistEnabled === true}
 						onToggle={handleToggleWatchlist}
 					>
-						Likes watchlist
+						点赞关注列表
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.recentlyAdded !== false}
 						onToggle={homeRowToggleHandlers.recentlyAdded}
 					>
-						Recently Added
+						最近添加
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.continueWatching !== false}
 						onToggle={homeRowToggleHandlers.continueWatching}
 					>
-						Continue Watching
+						继续观看
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.nextUp !== false}
 						onToggle={homeRowToggleHandlers.nextUp}
 					>
-						Next Up
+						接下来播放
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.latestMovies !== false}
 						onToggle={homeRowToggleHandlers.latestMovies}
 					>
-						Latest Movies
+						最新电影
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.latestShows !== false}
 						onToggle={homeRowToggleHandlers.latestShows}
 					>
-						Latest TV Shows
+						最新电视剧
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						selected={settings.homeRows?.myRequests !== false}
 						onToggle={homeRowToggleHandlers.myRequests}
 					>
-						My Requests
+						我的请求
 					</SwitchItem>
-					<div className={css.rowOrderHeader}>Row Order</div>
+					<div className={css.rowOrderHeader}>行顺序</div>
 					<div className={css.rowOrderList}>
 						{(settings.homeRowOrder || HOME_ROW_ORDER).map((rowKey, index, list) => (
 							<div key={rowKey} className={css.rowOrderItem}>
@@ -296,7 +296,7 @@ const SettingsSections = ({
 										data-row-key={rowKey}
 										onClick={moveHomeRowUp}
 									>
-										Up
+										上移
 									</Button>
 									<Button
 										size="small"
@@ -305,7 +305,7 @@ const SettingsSections = ({
 										data-row-key={rowKey}
 										onClick={moveHomeRowDown}
 									>
-										Down
+										下移
 									</Button>
 								</div>
 							</div>
@@ -316,24 +316,24 @@ const SettingsSections = ({
 
 			{shouldRenderSection('playback') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Playback</BodyText>
+					<BodyText className={css.sectionTitle}>播放</BodyText>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.autoPlayNext}
 						selected={settings.autoPlayNext}
 					>
-						Auto-play Next Episode
+						自动播放下一集
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.showPlayNextPrompt}
 						selected={settings.showPlayNextPrompt !== false}
 					>
-						Show Play Next Prompt
+						显示继续播放提示
 					</SwitchItem>
 					<Item
 						className={css.settingItem}
-						label="Play Next Prompt Mode"
+						label="继续播放提示模式"
 						slotAfter={getPlayNextPromptModeLabel(settings.playNextPromptMode)}
 						onClick={openPlayNextPromptModePopup}
 					/>
@@ -342,17 +342,17 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.skipIntro}
 						selected={settings.skipIntro}
 					>
-						Show Skip Intro/Recap Prompt
+						显示跳过片头/回顾提示
 					</SwitchItem>
 				</section>
 			) : null}
 
 			{shouldRenderSection('transcoding') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Transcoding</BodyText>
+					<BodyText className={css.sectionTitle}>转码</BodyText>
 					<Item
 						className={css.settingItem}
-						label="Maximum Bitrate"
+						label="最大位率"
 						slotAfter={getBitrateLabel(settings.maxBitrate)}
 						onClick={openBitratePopup}
 					/>
@@ -361,38 +361,38 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.enableTranscoding}
 						selected={settings.enableTranscoding}
 					>
-						Enable Transcoding
+						启用转码
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.forceTranscoding}
 						selected={settings.forceTranscoding}
 					>
-						Force Transcoding (always)
+						强制转码（始终）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.enableFmp4HlsContainerPreference}
 						selected={settings.enableFmp4HlsContainerPreference === true}
 					>
-						Enable fMP4-HLS container preference
+						启用 fMP4-HLS 容器偏好
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.forceFmp4HlsContainerPreference}
 						selected={settings.forceFmp4HlsContainerPreference === true}
 					>
-						Force fMP4-HLS container preference
+						强制 fMP4-HLS 容器偏好
 					</SwitchItem>
 				</section>
 			) : null}
 
 			{shouldRenderSection('subtitles') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Subtitles</BodyText>
+					<BodyText className={css.sectionTitle}>字幕</BodyText>
 					<Item
 						className={css.settingItem}
-						label="Preferred Subtitle Language"
+						label="首选字幕语言"
 						slotAfter={getLanguageLabel(settings.preferredSubtitleLanguage)}
 						onClick={openSubtitleLangPopup}
 					/>
@@ -401,18 +401,18 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.smartSubtitleTranscoding}
 						selected={smartSubtitleTranscodingEnabled}
 					>
-						Smart Subtitle Handling
+						智能字幕处理
 					</SwitchItem>
 					<Item
 						className={css.settingItem}
-						label="ASS/SSA Subtitle Renderer"
+						label="ASS/SSA 字幕渲染器"
 						disabled={!assSubtitleRendererControl.enabled}
 						slotAfter={assSubtitleRendererControl.label}
 						onClick={assSubtitleRendererControl.enabled ? openAssSubtitleRendererPopup : null}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Bitmap Subtitle Renderer"
+						label="位图字幕渲染器"
 						disabled={!bitmapSubtitleRendererControl.enabled}
 						slotAfter={bitmapSubtitleRendererControl.label}
 						onClick={bitmapSubtitleRendererControl.enabled ? openBitmapSubtitleRendererPopup : null}
@@ -423,18 +423,18 @@ const SettingsSections = ({
 						disabled={smartSubtitleTranscodingEnabled}
 						selected={settings.enableSubtitleBurnIn !== false}
 					>
-						Manual Subtitle Burn-in
+						手动字幕烧录
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.forceTranscodingWithSubtitles}
 						selected={settings.forceTranscodingWithSubtitles}
 					>
-						Force Subtitle Burn-in on HDR/DV
+						在 HDR/DV 上强制字幕烧录
 					</SwitchItem>
 					<Item
 						className={css.settingItem}
-						label="Subtitle Burn-in Formats"
+						label="字幕烧录格式"
 						disabled={!subtitleBurnInFormatsControl.enabled}
 						slotAfter={subtitleBurnInFormatsControl.label}
 						onClick={subtitleBurnInFormatsControl.enabled ? openSubtitleBurnInTextCodecsPopup : null}
@@ -444,70 +444,70 @@ const SettingsSections = ({
 
 			{shouldRenderSection('subtitleAppearance') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Breezyfin Subtitle Appearance</BodyText>
+					<BodyText className={css.sectionTitle}>Breezyfin 字幕外观</BodyText>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Font Size"
+						label="Breezyfin 字幕字号"
 						slotAfter={subtitleOverlayFontSizeLabel}
 						onClick={openSubtitleOverlaySizePopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Position"
+						label="Breezyfin 字幕位置"
 						slotAfter={subtitleOverlayPositionLabel}
 						onClick={openSubtitleOverlayPositionPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Background"
+						label="Breezyfin 字幕背景"
 						slotAfter={subtitleOverlayBackgroundLabel}
 						onClick={openSubtitleOverlayBackgroundPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Font Weight"
+						label="Breezyfin 字幕字重"
 						slotAfter={subtitleOverlayWeightLabel}
 						onClick={openSubtitleOverlayWeightPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Text Color"
+						label="Breezyfin 字幕文字颜色"
 						slotAfter={subtitleOverlayTextColorLabel}
 						onClick={openSubtitleOverlayTextColorPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Border Style"
+						label="Breezyfin 字幕边框样式"
 						slotAfter={subtitleOverlayBorderStyleLabel}
 						onClick={openSubtitleOverlayBorderStylePopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Border Color"
+						label="Breezyfin 字幕边框颜色"
 						slotAfter={subtitleOverlayBorderColorLabel}
 						onClick={openSubtitleOverlayBorderColorPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Box Border Strength"
+						label="Breezyfin 字幕框边框粗细"
 						slotAfter={subtitleOverlayBorderStrengthLabel}
 						onClick={openSubtitleOverlayBorderStrengthPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Outline Size"
+						label="Breezyfin 字幕描边宽度"
 						slotAfter={subtitleOverlayOutlineSizeLabel}
 						onClick={openSubtitleOverlayOutlineSizePopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Shadow Distance"
+						label="Breezyfin 字幕阴影距离"
 						slotAfter={subtitleOverlayShadowDistanceLabel}
 						onClick={openSubtitleOverlayShadowDistancePopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Breezyfin Subtitle Shadow Angle"
+						label="Breezyfin 字幕阴影角度"
 						slotAfter={subtitleOverlayShadowAngleLabel}
 						onClick={openSubtitleOverlayShadowAnglePopup}
 					/>
@@ -516,16 +516,16 @@ const SettingsSections = ({
 
 			{shouldRenderSection('display') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Display</BodyText>
+					<BodyText className={css.sectionTitle}>显示</BodyText>
 					<Item
 						className={css.settingItem}
-						label="Navigation Theme"
+						label="导航栏主题"
 						slotAfter={getNavbarThemeLabel(settings.navbarTheme)}
 						onClick={openNavbarThemePopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Screensaver"
+						label="屏保"
 						slotAfter={screensaverTimeoutLabel}
 						onClick={openScreensaverTimeoutPopup}
 					/>
@@ -534,52 +534,52 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.showBackdrops}
 						selected={settings.showBackdrops}
 					>
-						Show Background Images
+						显示背景图片
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.showSeasonImages}
 						selected={settings.showSeasonImages === true}
 					>
-						Show Season Card Images (Elegant)
+						显示季卡片图片（典雅）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.useSidewaysEpisodeList}
 						selected={settings.useSidewaysEpisodeList !== false}
 					>
-						Sideways Episode List (Elegant)
+						横版分集列表（典雅）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.disableAnimations}
 						selected={settings.disableAnimations}
 					>
-						Disable Animations (Performance Mode)
+						禁用动画（性能模式）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.disableAllAnimations}
 						selected={settings.disableAllAnimations}
 					>
-						Disable ALL Animations (Performance+ Mode)
+						禁用全部动画（性能+模式）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.showMediaBar}
 						selected={settings.showMediaBar !== false}
 					>
-						Show Media Bar on Home
+						在主页显示媒体栏
 					</SwitchItem>
 				</section>
 			) : null}
 
 			{shouldRenderSection('languages') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Audio Language Preferences</BodyText>
+					<BodyText className={css.sectionTitle}>音频语言偏好</BodyText>
 					<Item
 						className={css.settingItem}
-						label="Preferred Audio Language"
+						label="首选音频语言"
 						slotAfter={getLanguageLabel(settings.preferredAudioLanguage)}
 						onClick={openAudioLangPopup}
 					/>
@@ -588,25 +588,25 @@ const SettingsSections = ({
 
 			{shouldRenderSection('about') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>About</BodyText>
-					<Item className={css.infoItem} label="App Version" slotAfter={appVersion} />
-					<Item className={css.infoItem} label="Platform" slotAfter="webOS TV" />
-					<Item className={css.infoItem} label="webOS Version" slotAfter={webosVersionLabel} />
+					<BodyText className={css.sectionTitle}>关于</BodyText>
+					<Item className={css.infoItem} label="应用版本" slotAfter={appVersion} />
+					<Item className={css.infoItem} label="平台" slotAfter="webOS TV" />
+					<Item className={css.infoItem} label="webOS 版本" slotAfter={webosVersionLabel} />
 				</section>
 			) : null}
 
 			{shouldRenderSection('diagnostics') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Diagnostics</BodyText>
+					<BodyText className={css.sectionTitle}>诊断</BodyText>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.enableDiagnostics}
 						selected={settings.enableDiagnostics === true}
 					>
-						Enable Diagnostics
+						启用诊断
 					</SwitchItem>
 					<BodyText className={css.sectionHint}>
-						Enables runtime metrics and persistent troubleshooting logs. This may affect TV performance.
+						启用运行时指标和持续故障排查日志。这可能会影响电视性能。
 					</BodyText>
 					<SwitchItem
 						className={css.switchItem}
@@ -614,7 +614,7 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.showPerformanceOverlay}
 						selected={settings.showPerformanceOverlay === true}
 					>
-						Performance Overlay (FPS/Input)
+						性能叠加层（FPS/输入）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
@@ -622,7 +622,7 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.showExtendedPlayerDebugOverlay}
 						selected={settings.showExtendedPlayerDebugOverlay === true}
 					>
-						Extended Player Debug Metrics
+						扩展播放器调试指标
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
@@ -630,7 +630,7 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.showFocusDebugOverlay}
 						selected={settings.showFocusDebugOverlay === true}
 					>
-						Focus Debug Overlay (All Panels)
+						焦点调试叠加层（全部面板）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
@@ -638,7 +638,7 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.verboseAppLogs}
 						selected={settings.verboseAppLogs === true}
 					>
-						Verbose App Logs
+						详细应用日志
 					</SwitchItem>
 					{isNonStableBuild ? (
 						<SwitchItem
@@ -647,7 +647,7 @@ const SettingsSections = ({
 							onToggle={settingToggleHandlers.showDebugErrorMenu}
 							selected={settings.showDebugErrorMenu === true}
 						>
-							Debug Error Menu (Non-stable builds only)
+							调试错误菜单（仅限非稳定版本）
 						</SwitchItem>
 					) : null}
 					<SwitchItem
@@ -655,31 +655,31 @@ const SettingsSections = ({
 						onToggle={settingToggleHandlers.forceDolbyVision}
 						selected={settings.forceDolbyVision === true}
 					>
-						Force DV (Debug)
+						强制 DV（调试）
 					</SwitchItem>
 					<SwitchItem
 						className={css.switchItem}
 						onToggle={settingToggleHandlers.relaxedPlaybackProfile}
 						selected={settings.relaxedPlaybackProfile === true}
 					>
-						Relaxed Playback Profile (Debug)
+						放宽播放配置文件（调试）
 					</SwitchItem>
 					<Item
 						className={css.settingItem}
-						label="Logs"
-						slotAfter={`${appLogCount} entries`}
+						label="日志"
+						slotAfter={`${appLogCount} 条日志`}
 						onClick={openLogsPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Wipe Cache (Keep Login)"
-						slotAfter={cacheWipeInProgress ? 'Wiping...' : 'Run'}
+						label="清除缓存（保留登录）"
+						slotAfter={cacheWipeInProgress ? '清除中...' : '执行'}
 						onClick={openWipeCacheKeepLoginConfirm}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Wipe App Cache"
-						slotAfter={cacheWipeInProgress ? 'Wiping...' : 'Run'}
+						label="清除应用缓存"
+						slotAfter={cacheWipeInProgress ? '清除中...' : '执行'}
 						onClick={openWipeCacheConfirm}
 					/>
 				</section>
@@ -687,30 +687,30 @@ const SettingsSections = ({
 
 			{shouldRenderSection('capabilities') ? (
 				<section className={css.section}>
-					<BodyText className={css.sectionTitle}>Device Playback Capabilities</BodyText>
+					<BodyText className={css.sectionTitle}>设备播放能力</BodyText>
 					<Item
 						className={css.infoItem}
-						label="Capability Probe"
+						label="能力探测"
 						slotAfter={<span className={css.infoItemValueWrap}>{capabilityProbeLabel}</span>}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Probe Refresh Period"
+						label="探测刷新周期"
 						slotAfter={getCapabilityProbeRefreshPeriodLabel(settings.capabilityProbeRefreshDays)}
 						onClick={openCapabilityProbeRefreshPopup}
 					/>
 					<Item
 						className={css.settingItem}
-						label="Refresh Capabilities Now"
-						slotAfter="Run"
+						label="立即刷新能力"
+						slotAfter="执行"
 						onClick={handleRefreshCapabilitiesNow}
 					/>
-					<Item className={css.infoItem} label="Dynamic Range" slotAfter={dynamicRangeLabel} />
-					<Item className={css.infoItem} label="Dolby Vision in MKV" slotAfter={dolbyVisionMkvLabel} />
-					<Item className={css.infoItem} label="WebP Image Decode" slotAfter={webpImageDecodeLabel} />
+					<Item className={css.infoItem} label="动态范围" slotAfter={dynamicRangeLabel} />
+					<Item className={css.infoItem} label="MKV 中的杜比视界" slotAfter={dolbyVisionMkvLabel} />
+					<Item className={css.infoItem} label="WebP 图片解码" slotAfter={webpImageDecodeLabel} />
 					<Item
 						className={`${css.infoItem} ${css.collapsibleInfoItem} ${expandedCapabilityRows.videoCodecs ? css.collapsibleInfoItemExpanded : ''}`}
-						label="Video Codecs"
+						label="视频编解码"
 						slotAfter={(
 							<span className={`${css.infoItemValueWrap} ${expandedCapabilityRows.videoCodecs ? css.infoItemValueWrapExpanded : ''}`}>
 								{videoCodecsLabel}
@@ -720,7 +720,7 @@ const SettingsSections = ({
 					/>
 					<Item
 						className={`${css.infoItem} ${css.collapsibleInfoItem} ${expandedCapabilityRows.audioCodecs ? css.collapsibleInfoItemExpanded : ''}`}
-						label="Audio Codecs"
+						label="音频编解码"
 						slotAfter={(
 							<span className={`${css.infoItemValueWrap} ${expandedCapabilityRows.audioCodecs ? css.infoItemValueWrapExpanded : ''}`}>
 								{audioCodecsLabel}
@@ -728,10 +728,10 @@ const SettingsSections = ({
 						)}
 						onClick={handleToggleAudioCodecs}
 					/>
-					<Item className={css.infoItem} label="Dolby Atmos (EAC3 JOC)" slotAfter={atmosLabel} />
+					<Item className={css.infoItem} label="杜比全景声（EAC3 JOC）" slotAfter={atmosLabel} />
 					<Item className={css.infoItem} label="DTS / TrueHD" slotAfter={hdAudioLabel} />
-					<Item className={css.infoItem} label="Max Audio Channels" slotAfter={maxAudioChannelsLabel} />
-					<Item className={css.infoItem} label="Max Streaming Bitrate" slotAfter={maxStreamingBitrateLabel} />
+					<Item className={css.infoItem} label="最大声道数" slotAfter={maxAudioChannelsLabel} />
+					<Item className={css.infoItem} label="最大串流位率" slotAfter={maxStreamingBitrateLabel} />
 				</section>
 			) : null}
 		</div>

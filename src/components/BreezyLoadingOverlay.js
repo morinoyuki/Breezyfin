@@ -4,7 +4,7 @@ const joinClasses = (...names) => names.filter(Boolean).join(' ');
 
 const BreezyLoadingOverlay = ({
 	visible = true,
-	label = 'Loading...',
+	label = '加载中...',
 	className = ''
 }) => {
 	if (!visible) return null;

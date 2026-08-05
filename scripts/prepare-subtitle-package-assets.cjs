@@ -31,6 +31,17 @@ if (!fs.existsSync(jassubDistDir)) {
 fs.copyFileSync(fallbackFontSource, jassubDefaultFontOutput);
 console.log(`Prepared JASSUB default font asset at ${jassubDefaultFontOutput}`);
 
+// Stage the CJK fallback font alongside JASSUB defaults so it can be referenced
+// via explicit static asset URLs. Source: assets/fonts/NotoSansSC-Regular.otf
+// (SIL OFL 1.1, includes Latin + CJK glyphs).
+const cjkFontSource = path.join(projectRoot, 'assets', 'fonts', 'NotoSansSC-Regular.otf');
+const jassubCjkFontOutput = path.join(jassubDistDir, 'noto-sans-sc.otf');
+if (!fs.existsSync(cjkFontSource)) {
+	throw new Error(`Missing CJK subtitle fallback font: ${cjkFontSource}`);
+}
+fs.copyFileSync(cjkFontSource, jassubCjkFontOutput);
+console.log(`Prepared JASSUB CJK fallback font asset at ${jassubCjkFontOutput}`);
+
 if (!fs.existsSync(jassubWorkerRendererSource)) {
 	throw new Error(`Missing JASSUB worker renderer source: ${jassubWorkerRendererSource}`);
 }

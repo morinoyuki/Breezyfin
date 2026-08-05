@@ -23,11 +23,11 @@ const NETWORK_STATE_LABELS = {
 };
 
 const DEBUG_TABS = [
-	{id: 'overview', label: 'Overview'},
-	{id: 'playback', label: 'Playback'},
-	{id: 'subtitles', label: 'Subtitles'},
-	{id: 'runtime', label: 'Runtime'},
-	{id: 'diagnostics', label: 'Diagnostics'}
+	{id: 'overview', label: '简介'},
+	{id: 'playback', label: '播放'},
+	{id: 'subtitles', label: '字幕'},
+	{id: 'runtime', label: '时长'},
+	{id: 'diagnostics', label: '诊断'}
 ];
 
 const pickStreamByType = (mediaSource, streamType) => {
@@ -369,7 +369,7 @@ const PlayerDebugOverlay = ({
 				)
 			},
 			{
-				label: 'Server',
+				label: '服务器',
 				value: joinInfo(
 					`dp=${formatBooleanFlag(mediaSourceData?.SupportsDirectPlay)}`,
 					`ds=${formatBooleanFlag(mediaSourceData?.SupportsDirectStream)}`,
@@ -567,7 +567,7 @@ const PlayerDebugOverlay = ({
 			{label: 'Video Src', value: runtimeSnapshot.currentSrc}
 		],
 		diagnostics: [
-			{label: 'Playback', value: diagnosticsSummary},
+			{label: '播放', value: diagnosticsSummary},
 			{
 				label: 'Subtitle Diag',
 				value: subtitleDebug.diagnosticAtMs ? `diag=${subtitleDebug.diagnosticAtMs}` : '-'
@@ -595,10 +595,10 @@ const PlayerDebugOverlay = ({
 	return (
 		<div className={css.debugOverlay} aria-hidden>
 			<div className={css.debugOverlayHeader}>
-				<div className={css.debugOverlayTitle}>Extended Debug Metrics</div>
+				<div className={css.debugOverlayTitle}>扩展调试指标</div>
 				{typeof onClose === 'function' ? (
 					<Button size="small" onClick={onClose} className={css.debugOverlayCloseButton}>
-						Hide
+						隐藏
 					</Button>
 				) : null}
 			</div>

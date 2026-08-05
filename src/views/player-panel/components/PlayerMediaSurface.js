@@ -66,7 +66,7 @@ const PlayerMediaSurface = ({
 						<img
 							key={`${item?.Id || 'unknown'}:${backdropUrl}`}
 							src={backdropUrl}
-							alt={item?.Name || 'Playback'}
+							alt={item?.Name || '播放'}
 							onError={handleBackdropError}
 							loading="lazy"
 							decoding="async"

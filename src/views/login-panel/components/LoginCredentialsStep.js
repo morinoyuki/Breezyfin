@@ -18,7 +18,7 @@ const LoginCredentialsStep = ({
 	<div className={css.form}>
 		<BodyText className={css.serverInfo}>Server: {serverUrl}</BodyText>
 		<Input
-			placeholder="Username"
+			placeholder="用户名"
 			value={username}
 			onChange={onUsernameChange}
 			disabled={loading}
@@ -27,7 +27,7 @@ const LoginCredentialsStep = ({
 		/>
 		<Input
 			type="password"
-			placeholder="Password (optional)"
+			placeholder="密码（可选）"
 			value={password}
 			onChange={onPasswordChange}
 			onKeyDown={onPasswordKeyDown}
@@ -42,7 +42,7 @@ const LoginCredentialsStep = ({
 				focusEffect="static"
 				className={css.authTextButton}
 			>
-				Back
+				返回
 			</Button>
 			<Button
 				onClick={onLogin}

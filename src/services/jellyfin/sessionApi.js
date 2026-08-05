@@ -159,7 +159,7 @@ export const restoreServiceSession = (service, serverId = null, userId = null) =
 			serverUrl,
 			serverName: serverUrl,
 			userId: storedUserId,
-			username: 'User',
+			username: '用户',
 			accessToken: accessToken,
 			avatarTag: null
 		});
@@ -222,7 +222,7 @@ export const getCurrentServiceUser = async (service) => {
 		const active = serverManager.getActiveServer();
 		if (active?.id && active?.activeUser?.userId) {
 			serverManager.updateUser(active.id, active.activeUser.userId, {
-				username: user?.Name || active.activeUser.username || 'User',
+				username: user?.Name || active.activeUser.username || '用户',
 				avatarTag: user?.PrimaryImageTag || null
 			});
 		}

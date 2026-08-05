@@ -156,7 +156,7 @@ export const useSettingsOptionHandlers = ({
 				subtitleBurnInTextCodecs: ordered
 			};
 			if (!writeBreezyfinSettings(updated)) {
-				console.error('Failed to save subtitle burn-in format settings');
+				console.error('保存字幕烧录格式设置失败');
 			}
 			return updated;
 		});
@@ -297,11 +297,11 @@ export const useSettingsOptionHandlers = ({
 		);
 	}, [settings.subtitleBurnInTextCodecs]);
 	const assSubtitleRendererLabel = useMemo(
-		() => getOptionLabel(assSubtitleRendererOptions, settings.assSubtitleRenderer, 'Auto'),
+		() => getOptionLabel(assSubtitleRendererOptions, settings.assSubtitleRenderer, '自动'),
 		[assSubtitleRendererOptions, settings.assSubtitleRenderer]
 	);
 	const bitmapSubtitleRendererLabel = useMemo(
-		() => getOptionLabel(bitmapSubtitleRendererOptions, settings.bitmapSubtitleRenderer, 'Auto'),
+		() => getOptionLabel(bitmapSubtitleRendererOptions, settings.bitmapSubtitleRenderer, '自动'),
 		[bitmapSubtitleRendererOptions, settings.bitmapSubtitleRenderer]
 	);
 	const subtitleOverlayFontSizeLabel = useMemo(
@@ -309,31 +309,31 @@ export const useSettingsOptionHandlers = ({
 		[settings.subtitleOverlayFontSizePx]
 	);
 	const subtitleOverlayPositionLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_POSITION_OPTIONS, settings.subtitleOverlayPosition, 'Standard'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_POSITION_OPTIONS, settings.subtitleOverlayPosition, '标准'),
 		[settings.subtitleOverlayPosition]
 	);
 	const subtitleOverlayBackgroundLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_BACKGROUND_OPTIONS, settings.subtitleOverlayBackground, 'None'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_BACKGROUND_OPTIONS, settings.subtitleOverlayBackground, '无'),
 		[settings.subtitleOverlayBackground]
 	);
 	const subtitleOverlayWeightLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_WEIGHT_OPTIONS, settings.subtitleOverlayWeight, 'Bold'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_WEIGHT_OPTIONS, settings.subtitleOverlayWeight, '粗体'),
 		[settings.subtitleOverlayWeight]
 	);
 	const subtitleOverlayTextColorLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_TEXT_COLOR_OPTIONS, settings.subtitleOverlayTextColor, 'White'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_TEXT_COLOR_OPTIONS, settings.subtitleOverlayTextColor, '白色'),
 		[settings.subtitleOverlayTextColor]
 	);
 	const subtitleOverlayBorderStyleLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_STYLE_OPTIONS, settings.subtitleOverlayBorderStyle, 'Outline'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_STYLE_OPTIONS, settings.subtitleOverlayBorderStyle, '描边'),
 		[settings.subtitleOverlayBorderStyle]
 	);
 	const subtitleOverlayBorderColorLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_COLOR_OPTIONS, settings.subtitleOverlayBorderColor, 'Black'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_COLOR_OPTIONS, settings.subtitleOverlayBorderColor, '黑色'),
 		[settings.subtitleOverlayBorderColor]
 	);
 	const subtitleOverlayBorderStrengthLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_STRENGTH_OPTIONS, settings.subtitleOverlayBorderStrength, 'Medium'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_BORDER_STRENGTH_OPTIONS, settings.subtitleOverlayBorderStrength, '中等'),
 		[settings.subtitleOverlayBorderStrength]
 	);
 	const subtitleOverlayOutlineSizeLabel = useMemo(
@@ -341,18 +341,18 @@ export const useSettingsOptionHandlers = ({
 		[settings.subtitleOverlayOutlineSizePx]
 	);
 	const subtitleOverlayShadowDistanceLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_SHADOW_DISTANCE_OPTIONS, settings.subtitleOverlayShadowDistance, 'Medium'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_SHADOW_DISTANCE_OPTIONS, settings.subtitleOverlayShadowDistance, '中等'),
 		[settings.subtitleOverlayShadowDistance]
 	);
 	const subtitleOverlayShadowAngleLabel = useMemo(
-		() => getOptionLabel(SUBTITLE_OVERLAY_SHADOW_ANGLE_OPTIONS, settings.subtitleOverlayShadowAngle, 'Down'),
+		() => getOptionLabel(SUBTITLE_OVERLAY_SHADOW_ANGLE_OPTIONS, settings.subtitleOverlayShadowAngle, '下移'),
 		[settings.subtitleOverlayShadowAngle]
 	);
 	const screensaverTimeoutLabel = useMemo(
 		() => getOptionLabel(
 			SCREENSAVER_TIMEOUT_OPTIONS,
 			settings.screensaverTimeoutMinutes,
-			'1 minute'
+			'1 分钟'
 		),
 		[settings.screensaverTimeoutMinutes]
 	);

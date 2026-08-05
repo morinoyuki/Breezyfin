@@ -143,7 +143,7 @@ const LoginPanel = ({
 			await jellyfinService.connect(normalizedServerUrl);
 			localStorage.setItem('lastJellyfinServer', normalizedServerUrl);
 			setStep('login');
-			setStatus('Connected. Enter your credentials.');
+			setStatus('已连接，请输入凭据。');
 		} catch (err) {
 			setError(getUserErrorMessage(err, 'Failed to connect to server. Please check the URL.'));
 			setStatus('');
@@ -201,7 +201,7 @@ const LoginPanel = ({
 			setUsername('');
 			setPassword('');
 			setStep('login');
-			setStatus('Connected. Enter your credentials.');
+			setStatus('已连接，请输入凭据。');
 		} catch (err) {
 			setError(getUserErrorMessage(err, 'Failed to connect to saved server.'));
 			setStatus('');
@@ -351,7 +351,7 @@ const LoginPanel = ({
 								onClick={handleOpenSettings}
 								size="small"
 								icon="gear"
-								aria-label="Open settings and diagnostics"
+								aria-label="打开设置和诊断"
 								focusEffect="static"
 								className={css.settingsIconButton}
 							/>

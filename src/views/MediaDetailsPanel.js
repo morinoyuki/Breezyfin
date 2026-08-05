@@ -373,7 +373,7 @@ const MediaDetailsPanel = ({
 	const isInteractionLoading = loading || !showContentStage;
 	const shouldShowSeasonPosters = !isElegantTheme || showSeasonImages;
 	const isSidewaysEpisodeLayout = isElegantTheme && useSidewaysEpisodeList;
-	const pageTitle = item?.Name || item?.SeriesName || 'Details';
+	const pageTitle = item?.Name || item?.SeriesName || '详情';
 	const {
 		audioTracks,
 		subtitleTracks,
@@ -704,7 +704,7 @@ const MediaDetailsPanel = ({
 												<div className={css.sectionSwitchRow}>
 													<div className={css.sectionHint}>
 														<Icon className={css.sectionHintArrow}>arrowsmallup</Icon>
-														Overview
+														简介
 													</div>
 												</div>
 											)}

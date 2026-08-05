@@ -44,10 +44,10 @@ const LoginSavedAccountsStep = ({
 							<span className={css.savedAvatarFallback}>{userInitial}</span>
 						</div>
 						<BodyText className={css.savedName}>
-							{entry.username || 'User'}
+							{entry.username || '用户'}
 						</BodyText>
 						<BodyText className={css.savedState}>
-							{isResuming ? 'Opening...' : (entry.serverName || 'Jellyfin Server')}
+							{isResuming ? 'Opening...' : (entry.serverName || 'Jellyfin 服务器')}
 						</BodyText>
 					</SavedItemComponent>
 				);
@@ -61,7 +61,7 @@ const LoginSavedAccountsStep = ({
 				focusEffect="static"
 				className={css.authTextButton}
 			>
-				Add Server
+				添加服务器
 			</Button>
 			<Button
 				onClick={onAddUser}
@@ -70,7 +70,7 @@ const LoginSavedAccountsStep = ({
 				focusEffect="static"
 				className={css.authTextButton}
 			>
-				Add User
+				添加用户
 			</Button>
 		</div>
 	</div>

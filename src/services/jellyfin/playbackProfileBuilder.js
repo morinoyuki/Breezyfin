@@ -249,7 +249,7 @@ export const buildSafeSubtitleBurnInTranscodingProfiles = () => ([
 		VideoCodec: 'h264',
 		Context: 'Streaming',
 		Protocol: 'hls',
-		MaxAudioChannels: '6',
+		MaxAudioChannels: '2',
 		MinSegments: '1',
 		BreakOnNonKeyFrames: false
 	}
@@ -363,7 +363,11 @@ export const buildPlaybackDeviceProfile = ({
 			Type: 'VideoAudio',
 			Codec: 'aac,mp3,ac3,eac3',
 			Conditions: [
-				{Condition: 'LessThanEqual', Property: 'AudioChannels', Value: maxAudioChannels, IsRequired: false}
+				// Required so any >2 channel audio source that does not match the
+				// device's maxAudioChannels capability fails to match and is
+				// downmixed by the Jellyfin transcoder instead of being passed
+				// to the webOS HTML5 audio output as-is.
+				{Condition: 'LessThanEqual', Property: 'AudioChannels', Value: maxAudioChannels, IsRequired: true}
 			]
 		}
 	];

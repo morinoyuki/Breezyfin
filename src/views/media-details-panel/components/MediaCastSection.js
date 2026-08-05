@@ -56,7 +56,7 @@ const MediaCastSection = ({
 				onClick={onToggleCastCollapsed}
 				onKeyDown={onCastToggleKeyDown}
 			>
-				<Heading size="medium" className={`${css.sectionHeading} ${css.castToggleLabel}`}>Cast</Heading>
+				<Heading size="medium" className={`${css.sectionHeading} ${css.castToggleLabel}`}>演员</Heading>
 				<Icon className={css.castToggleIcon}>
 					{isCastCollapsed ? 'arrowsmallup' : 'arrowsmalldown'}
 				</Icon>

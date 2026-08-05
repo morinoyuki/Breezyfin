@@ -14,7 +14,7 @@ const MediaEpisodePickerPopup = ({
 	if (!episodes?.length) return null;
 
 	return (
-		<MediaOptionPickerPopup open={open} onClose={onClose} title="Select Episode">
+		<MediaOptionPickerPopup open={open} onClose={onClose} title="选择分集">
 			{episodes.map((episode) => (
 				<Button
 					key={episode.Id}

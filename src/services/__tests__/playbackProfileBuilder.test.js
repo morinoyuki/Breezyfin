@@ -136,7 +136,7 @@ describe('playbackProfileBuilder subtitle profiles', () => {
 				Container: 'ts',
 				VideoCodec: 'h264',
 				AudioCodec: 'aac',
-				MaxAudioChannels: '6'
+				MaxAudioChannels: '2'
 			})
 		]);
 	});
@@ -199,7 +199,7 @@ describe('playbackProfileBuilder transcoding profiles', () => {
 			Container: 'ts',
 			VideoCodec: 'h264',
 			AudioCodec: 'aac',
-			MaxAudioChannels: '6',
+			MaxAudioChannels: '2',
 			MinSegments: '1',
 			BreakOnNonKeyFrames: false
 		}));

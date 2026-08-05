@@ -120,7 +120,7 @@ describe('playerVideoLoaderHelpers', () => {
 			},
 			resolvedPlayMethod: 'DirectPlay',
 			dynamicRangeInfo: {id: 'DV'},
-			dynamicRangeLabel: 'Dolby Vision',
+			dynamicRangeLabel: '杜比视界',
 			requestedDynamicRangeCap: 'auto',
 			playbackRequestDebug: {directPlay: true},
 			diagnosticsEnabled: true,
@@ -134,7 +134,7 @@ describe('playerVideoLoaderHelpers', () => {
 		expect(result).toEqual({
 			__selectedPlayMethod: 'DirectPlay',
 			__dynamicRangeInfo: {id: 'DV'},
-			__dynamicRangeLabel: 'Dolby Vision',
+			__dynamicRangeLabel: '杜比视界',
 			__requestedDynamicRangeCap: 'hdr10',
 			__debugVideoRangeType: 'DOVIWithHDR10',
 			__debugVideoRange: 'HDR',
@@ -288,7 +288,7 @@ describe('playerVideoLoaderHelpers', () => {
 	});
 
 	it.each([
-		['DV', 'Dolby Vision'],
+		['DV', '杜比视界'],
 		['HDR10', 'HDR'],
 		['HDR10_PLUS', 'HDR'],
 		['HLG', 'HDR']

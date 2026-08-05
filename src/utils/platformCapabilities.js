@@ -19,7 +19,7 @@ import {
 let runtimeCapabilitiesCache = null;
 let runtimeCapabilitiesNeedsDomProbe = false;
 const RUNTIME_CAPABILITIES_CACHE_KEY = 'breezyfinRuntimeCapabilities:v2';
-const RUNTIME_CAPABILITIES_CACHE_VERSION = 3;
+const RUNTIME_CAPABILITIES_CACHE_VERSION = 4;
 const RUNTIME_LUNA_CAPABILITIES_CACHE_KEY = 'breezyfinRuntimeLunaCapabilities:v1';
 const RUNTIME_LUNA_CAPABILITIES_CACHE_VERSION = 1;
 const DAY_MS = 24 * 60 * 60 * 1000;

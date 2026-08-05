@@ -117,13 +117,13 @@ describe('Toolbar SyncPlay navigation placement', () => {
 		const handleNavigateSyncPlay = jest.fn();
 		render(<ToolbarElegantLayout {...buildElegantProps({handleNavigateSyncPlay})} />);
 
-		expect(screen.getByText('Search')).toBeTruthy();
-		expect(screen.getByText('Watchlist')).toBeTruthy();
+		expect(screen.getByText('搜索')).toBeTruthy();
+		expect(screen.getByText('关注列表')).toBeTruthy();
 		expect(document.querySelector('[data-spotlight-id="toolbar-search-icon"]')).toBeNull();
-		const syncPlayAction = screen.getByRole('button', {name: 'SyncPlay'});
+		const syncPlayAction = screen.getByRole('button', {name: '同步播放'});
 		expect(syncPlayAction.dataset.spotlightId).toBe('toolbar-sync-play');
 		expect(screen.getByTestId('icon-dlna')).toBeTruthy();
-		expect(screen.queryByText('SyncPlay')).toBeNull();
+		expect(screen.queryByText('同步播放')).toBeNull();
 
 		fireEvent.click(syncPlayAction);
 		expect(handleNavigateSyncPlay).toHaveBeenCalledTimes(1);
@@ -133,17 +133,17 @@ describe('Toolbar SyncPlay navigation placement', () => {
 		render(<ToolbarElegantLayout {...buildElegantProps({showSyncPlay: false})} />);
 
 		expect(document.querySelector('[data-spotlight-id="toolbar-search-icon"]')).toBeTruthy();
-		expect(screen.queryByRole('button', {name: 'SyncPlay'})).toBeNull();
+		expect(screen.queryByRole('button', {name: '同步播放'})).toBeNull();
 	});
 
 	it('keeps Classic Search and moves SyncPlay out of the scrolling tab group', () => {
 		const handleNavigateSyncPlay = jest.fn();
 		render(<ToolbarClassicLayout {...buildClassicProps({handleNavigateSyncPlay})} />);
 
-		expect(screen.getByRole('button', {name: 'Search'})).toBeTruthy();
-		expect(screen.getByText('Watchlist')).toBeTruthy();
-		expect(screen.queryByText('SyncPlay')).toBeNull();
-		const syncPlayAction = screen.getByRole('button', {name: 'SyncPlay'});
+		expect(screen.getByRole('button', {name: '搜索'})).toBeTruthy();
+		expect(screen.getByText('关注列表')).toBeTruthy();
+		expect(screen.queryByText('同步播放')).toBeNull();
+		const syncPlayAction = screen.getByRole('button', {name: '同步播放'});
 		expect(screen.getByTestId('icon-dlna')).toBeTruthy();
 
 		fireEvent.click(syncPlayAction);

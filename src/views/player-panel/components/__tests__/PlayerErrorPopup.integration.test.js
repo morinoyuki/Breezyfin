@@ -67,12 +67,12 @@ const Harness = ({onRetry, onBack}) => {
 
 describe('PlayerErrorPopup activation', () => {
 	it.each([
-		['Retry', 'ENTER', KeyCodes.ENTER],
-		['Retry', 'OK', KeyCodes.OK],
-		['Retry', 'Space', KeyCodes.SPACE],
-		['Go Back', 'ENTER', KeyCodes.ENTER],
-		['Go Back', 'OK', KeyCodes.OK],
-		['Go Back', 'Space', KeyCodes.SPACE]
+		['重试', 'ENTER', KeyCodes.ENTER],
+		['重试', 'OK', KeyCodes.OK],
+		['重试', 'Space', KeyCodes.SPACE],
+		['返回', 'ENTER', KeyCodes.ENTER],
+		['返回', 'OK', KeyCodes.OK],
+		['返回', 'Space', KeyCodes.SPACE]
 	])('activates %s with %s', (action, _, keyCode) => {
 		const onRetry = jest.fn();
 		const onBack = jest.fn();
@@ -82,7 +82,7 @@ describe('PlayerErrorPopup activation', () => {
 
 		fireEvent.keyDown(button, {keyCode, which: keyCode});
 
-		expect(action === 'Retry' ? onRetry : onBack).toHaveBeenCalledTimes(1);
+		expect(action === '重试' ? onRetry : onBack).toHaveBeenCalledTimes(1);
 	});
 
 	it('activates both actions through pointer input', () => {
@@ -90,8 +90,8 @@ describe('PlayerErrorPopup activation', () => {
 		const onBack = jest.fn();
 		render(<Harness onRetry={onRetry} onBack={onBack} />);
 
-		fireEvent.click(screen.getByRole('button', {name: 'Retry'}));
-		fireEvent.click(screen.getByRole('button', {name: 'Go Back'}));
+		fireEvent.click(screen.getByRole('button', {name: '重试'}));
+		fireEvent.click(screen.getByRole('button', {name: '返回'}));
 
 		expect(onRetry).toHaveBeenCalledTimes(1);
 		expect(onBack).toHaveBeenCalledTimes(1);

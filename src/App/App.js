@@ -397,7 +397,7 @@ const App = (props) => {
 					crashRecoveryPendingRef.current = false;
 					resetSessionState();
 					setCurrentView('login');
-					setLoginNotice('Crash recovery paused automatic sign-in. Choose an account or open diagnostics.');
+					setLoginNotice('崩溃恢复暂停了自动登录。请选择一个账户或打开诊断。');
 					setLoginNoticeNonce((value) => value + 1);
 					return;
 				}
@@ -850,12 +850,12 @@ const App = (props) => {
 		switch (actionId) {
 			case 'runtime-crash':
 				window.setTimeout(() => {
-					throw new Error('Debug: simulated app runtime crash');
+					throw new Error('调试：模拟应用运行时崩溃');
 				}, 0);
 				break;
 			case 'unhandled-rejection':
 				window.setTimeout(() => {
-					Promise.reject(new Error('Debug: simulated unhandled rejection'));
+					Promise.reject(new Error('调试：模拟未处理的异常'));
 				}, 0);
 				break;
 			case 'player-playback-error':
@@ -958,7 +958,7 @@ const App = (props) => {
 					open={debugErrorMenuOpen}
 					onOpenChange={handleDebugErrorMenuOpenChange}
 					onAction={handleDebugErrorMenuAction}
-					ariaLabel="Debug error actions"
+					ariaLabel="调试错误操作"
 				/>
 				<FocusDebugOverlay
 					enabled={diagnosticsEnabled && focusDebugOverlayEnabled && !screensaverActive}

@@ -9,7 +9,7 @@ const LoginServerSelectStep = ({
 	css
 }) => (
 	<div className={css.form}>
-		<BodyText className={css.serverInfo}>Choose which saved server to add a user to.</BodyText>
+		<BodyText className={css.serverInfo}>选择要将用户添加到的已保存服务器。</BodyText>
 		<div className={css.savedList}>
 			{servers.map((server) => (
 				<Button
@@ -20,7 +20,7 @@ const LoginServerSelectStep = ({
 					size="large"
 					className={css.authTextButton}
 				>
-					{server.serverName || server.url || 'Jellyfin Server'}
+					{server.serverName || server.url || 'Jellyfin 服务器'}
 				</Button>
 			))}
 		</div>
@@ -31,7 +31,7 @@ const LoginServerSelectStep = ({
 			focusEffect="static"
 			className={css.authTextButton}
 		>
-			Back
+			返回
 		</Button>
 	</div>
 );

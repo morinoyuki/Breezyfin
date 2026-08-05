@@ -652,7 +652,7 @@ describe('playbackApi', () => {
 				Protocol: 'hls',
 				VideoCodec: 'h264',
 				AudioCodec: 'aac',
-				MaxAudioChannels: '6'
+				MaxAudioChannels: '2'
 			})
 		]);
 		expect(playbackInfo?.__breezyfin?.subtitlePolicy).toEqual(expect.objectContaining({

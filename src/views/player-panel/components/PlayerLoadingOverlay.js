@@ -1,7 +1,7 @@
 import BreezyLoadingOverlay from '../../../components/BreezyLoadingOverlay';
 import css from '../../PlayerPanel.module.less';
 
-const PlayerLoadingOverlay = ({loading, label = 'Loading...'}) => {
+const PlayerLoadingOverlay = ({loading, label = '加载中...'}) => {
 	if (!loading) return null;
 
 	return (

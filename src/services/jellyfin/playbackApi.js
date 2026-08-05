@@ -45,6 +45,7 @@ import {attachPlaybackInfoMetadata, buildPlaybackDecisionSnapshot} from './playb
 import {createNoMediaSourceError, PlaybackNegotiationError} from './playback-api/errors';
 import {
 	attemptDefaultAudioFallback,
+	attemptAudioDownmixEnforcement,
 	attemptAudioTrackIntentRemap,
 	attemptDirectAudioCompatibilityProbe,
 	attemptDolbyVisionMkvCompatibilityRetry
@@ -347,6 +348,25 @@ export const getItemPlaybackInfo = async (service, itemId, options = {}) => {
 				reason: 'avoid-dolby-vision',
 				message: 'Selected a non-Dolby Vision source for fallback.'
 			});
+		}
+
+		const audioDownmixResult = await attemptAudioDownmixEnforcement({
+			service,
+			itemId,
+			activePayload,
+			selectedSource,
+			options,
+			data,
+			forceTranscoding,
+			runtimePlaybackCapabilities,
+			createSourceSelectionOptions,
+			diagnostics: collectDiagnostics ? diagnostics : null
+		});
+		if (audioDownmixResult) {
+			data = audioDownmixResult.data || data;
+			selectedSource = audioDownmixResult.selectedSource || selectedSource;
+			activePayload = audioDownmixResult.activePayload || activePayload;
+			adjustments.push(audioDownmixResult.adjustment);
 		}
 
 		const audioIntentResult = await attemptAudioTrackIntentRemap({

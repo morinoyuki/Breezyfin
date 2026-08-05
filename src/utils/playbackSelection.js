@@ -681,6 +681,16 @@ export const determinePlayMethod = (mediaSource, {
 		: (!audioStreams.length || audioStreams.some((stream) => isSupportedAudioCodec(stream.Codec)));
 	const dynamicRangeInfo = getMediaSourceDynamicRangeInfo(mediaSource);
 	const playbackCapabilities = getPlaybackCapabilities();
+	const maxAudioChannels = Number(playbackCapabilities.maxAudioChannels);
+	const audioChannelsLimit = Number.isFinite(maxAudioChannels) && maxAudioChannels > 0 ? maxAudioChannels : null;
+	const selectedAudioChannels = Number(selectedAudioStream?.Channels);
+	const anyAudioExceedsChannelLimit = audioChannelsLimit !== null && (
+		(Number.isFinite(selectedAudioChannels) && selectedAudioChannels > audioChannelsLimit) ||
+		audioStreams.some((stream) => {
+			const channels = Number(stream?.Channels);
+			return Number.isFinite(channels) && channels > audioChannelsLimit;
+		})
+	);
 	const normalizedRangeCap = normalizeDynamicRangeCap(dynamicRangeCap);
 
 	if (!canDynamicRangeSatisfyCap(dynamicRangeInfo, normalizedRangeCap) && mediaSource.TranscodingUrl) {
@@ -696,6 +706,7 @@ export const determinePlayMethod = (mediaSource, {
 		return 'Transcode';
 	}
 
+	if (anyAudioExceedsChannelLimit && mediaSource.TranscodingUrl) return 'Transcode';
 	if (!hasCompatibleAudio && mediaSource.TranscodingUrl) return 'Transcode';
 	if (!disableDirectPlay && mediaSource.SupportsDirectPlay) return 'DirectPlay';
 	if (mediaSource.SupportsDirectStream) return 'DirectStream';

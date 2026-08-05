@@ -14,7 +14,7 @@ export const useSettingsHomeRows = ({setSettings}) => {
 				}
 			};
 			if (!writeBreezyfinSettings(updated)) {
-				console.error('Failed to save home row settings');
+				console.error('保存主页行设置失败');
 			}
 			return updated;
 		});
@@ -32,7 +32,7 @@ export const useSettingsHomeRows = ({setSettings}) => {
 			[order[index], order[swapIndex]] = [order[swapIndex], order[index]];
 			const updated = {...prevSettings, homeRowOrder: order};
 			if (!writeBreezyfinSettings(updated)) {
-				console.error('Failed to save home row order');
+				console.error('保存主页行顺序失败');
 			}
 			return updated;
 		});

@@ -59,7 +59,7 @@ const MediaSeasonsSection = ({
 
 	return (
 		<div className={css.seasonsSection}>
-			<Heading size="medium" className={css.sectionHeading}>Seasons</Heading>
+			<Heading size="medium" className={css.sectionHeading}>季</Heading>
 			<div className={css.seasonCards} ref={seasonScrollerRef}>
 				{seasons.map((season) => {
 					const seasonImageKey = String(season?.Id || '?');

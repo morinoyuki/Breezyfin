@@ -26,7 +26,7 @@ export const getLikesWatchlist = async (
 		includeItemTypes: (safeItemTypes.length ? safeItemTypes : ['Movie', 'Series']).join(','),
 		filters: 'Likes',
 		sortBy: 'SortName,Name',
-		sortOrder: 'Ascending',
+		sortOrder: '升序',
 		fields: 'PrimaryImageAspectRatio,BackdropImageTags,ImageTags,PrimaryImageTag,UserData,ChildCount,Tags',
 		enableTotalRecordCount: 'true',
 		limit: String(safeLimit),

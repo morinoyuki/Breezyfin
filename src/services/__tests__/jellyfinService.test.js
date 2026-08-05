@@ -250,7 +250,7 @@ describe('jellyfinService', () => {
 			expect.objectContaining({
 				serverUrl: 'http://legacy.local',
 				userId: 'legacy-user',
-				username: 'User',
+				username: '用户',
 				accessToken: 'legacy-token'
 			})
 		);

@@ -73,7 +73,7 @@ describe('MediaFilterControls lifecycle', () => {
 
 		fireEvent.click(screen.getByLabelText('Library filters'));
 		fireEvent.click(screen.getByText('Favorites'));
-		fireEvent.click(screen.getByText('Done'));
+		fireEvent.click(screen.getByText('完成'));
 
 		await waitFor(() => expect(onApplyFilters).toHaveBeenCalledWith(['favorites']));
 		expect(screen.queryByTestId('filter-popup')).toBeNull();
@@ -85,7 +85,7 @@ describe('MediaFilterControls lifecycle', () => {
 		renderWithBreezyfin(<FilterHarness onApplyFilters={onApplyFilters} />);
 
 		fireEvent.click(screen.getByLabelText('Library filters'));
-		fireEvent.click(screen.getByText('Done'));
+		fireEvent.click(screen.getByText('完成'));
 
 		await waitFor(() => expect(screen.queryByTestId('filter-popup')).toBeNull());
 		expect(onApplyFilters).not.toHaveBeenCalled();

@@ -326,7 +326,7 @@ const HomeSectionPanel = ({
 					{loading ? <div className={css.loading}><BreezyLoadingOverlay /></div> : null}
 						{findingFilteredResults ? (
 							<div className={css.loading}>
-								<BreezyLoadingOverlay label="Finding matching items..." />
+								<BreezyLoadingOverlay label="正在查找匹配的项目..." />
 							</div>
 						) : null}
 						{error ? (
@@ -336,7 +336,7 @@ const HomeSectionPanel = ({
 						) : null}
 						{showEmpty ? (
 							<div className={css.emptyState}>
-								<BodyText>No items found.</BodyText>
+								<BodyText>未找到项目。</BodyText>
 							</div>
 						) : null}
 						<PanelLandscapeVirtualGrid
@@ -357,8 +357,8 @@ const HomeSectionPanel = ({
 			</div>
 			<ProviderItemPopup
 				open={externalItemOpen}
-				title={externalItem?.Name || 'Discovery'}
-				detail={externalItem?.Overview || 'No overview is available.'}
+				title={externalItem?.Name || '发现'}
+				detail={externalItem?.Overview || '暂无简介。'}
 				item={externalItem}
 				onClose={closeExternalItem}
 				onHide={clearExternalItem}

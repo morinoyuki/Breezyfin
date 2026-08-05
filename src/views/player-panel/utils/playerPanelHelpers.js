@@ -50,7 +50,7 @@ export const getSkipSegmentLabel = (segmentType, hasNextEpisode = false) => {
 		case 'Credits':
 			return hasNextEpisode ? 'Next Episode' : 'Skip Credits';
 		default:
-			return 'Skip';
+			return '跳过';
 	}
 };
 

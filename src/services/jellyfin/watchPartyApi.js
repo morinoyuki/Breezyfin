@@ -126,7 +126,7 @@ const stopSocket = (entry, {clearRoom = false} = {}) => {
 	clearTimer(entry, 'refreshTimer');
 	const socket = entry.socket;
 	entry.socket = null;
-	if (socket && socket.readyState < 2) socket.close(1000, 'Session ended');
+	if (socket && socket.readyState < 2) socket.close(1000, '会话已结束');
 	entry.clock.reset();
 	entry.state = {
 		...entry.state,
@@ -496,13 +496,13 @@ export const onWatchPartyMessage = (service, type, listener) => {
 
 export const listWatchPartyRooms = (service) => {
 	const entry = getEntry(service);
-	if (!entry) throw new Error('An authenticated Jellyfin session is required');
+	if (!entry) throw new Error('需要经过身份验证的 Jellyfin 会话');
 	sendRaw(entry, 'list_rooms');
 };
 
 export const createWatchPartyRoom = (service, {name, startPosition = 0, mediaId = '', password = ''} = {}) => {
 	const entry = getEntry(service);
-	if (!entry) throw new Error('An authenticated Jellyfin session is required');
+	if (!entry) throw new Error('需要经过身份验证的 Jellyfin 会话');
 	const roomName = compactText(name, 120);
 	if (!roomName) throw new Error('Room name is required');
 	const payload = {
@@ -519,7 +519,7 @@ export const createWatchPartyRoom = (service, {name, startPosition = 0, mediaId 
 
 export const joinWatchPartyRoom = (service, roomId, password = '') => {
 	const entry = getEntry(service);
-	if (!entry) throw new Error('An authenticated Jellyfin session is required');
+	if (!entry) throw new Error('需要经过身份验证的 Jellyfin 会话');
 	const normalizedRoomId = compactText(roomId, 128);
 	if (!normalizedRoomId) throw new Error('Room ID is required');
 	const payload = {};

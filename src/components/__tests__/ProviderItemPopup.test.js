@@ -36,7 +36,7 @@ describe('ProviderItemPopup', () => {
 
 		const surface = screen.getByText('A long provider description.').parentElement;
 		expect(surface.className).toContain('popupSurface');
-		fireEvent.click(screen.getByRole('button', {name: 'Close'}));
+		fireEvent.click(screen.getByRole('button', {name: '关闭'}));
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
 

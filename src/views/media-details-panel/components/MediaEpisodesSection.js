@@ -69,7 +69,7 @@ const MediaEpisodesSection = ({
 
 	return (
 		<div className={css.episodesSection}>
-			<Heading size="medium" className={css.sectionHeading}>Episodes</Heading>
+			<Heading size="medium" className={css.sectionHeading}>分集</Heading>
 			<div className={`${css.episodeCards} ${isSidewaysEpisodeLayout ? css.episodeCardsSideways : ''}`} ref={episodesListRef}>
 				{episodes.map((episode, index) => {
 					const episodeImageKey = String(episode?.Id || `episode-${index}`);

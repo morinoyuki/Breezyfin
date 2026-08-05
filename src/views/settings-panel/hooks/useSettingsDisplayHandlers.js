@@ -32,7 +32,7 @@ export const useSettingsDisplayHandlers = ({
 	);
 
 	const getNavbarThemeLabel = useCallback(
-		(value) => getOptionLabel(NAVBAR_THEME_OPTIONS, value, 'Classic'),
+		(value) => getOptionLabel(NAVBAR_THEME_OPTIONS, value, '经典'),
 		[]
 	);
 
@@ -53,8 +53,8 @@ export const useSettingsDisplayHandlers = ({
 			const refreshedLabel = formatCapabilityTimestamp(refreshedAt);
 			setToastMessage(`Capabilities refreshed (${refreshedLabel}).`);
 		} catch (error) {
-			console.error('Failed to refresh runtime capabilities:', error);
-			setToastMessage('Failed to refresh capabilities.');
+			console.error('刷新运行时能力失败：', error);
+			setToastMessage('刷新能力失败。');
 		}
 	}, [bumpCapabilitySnapshotVersion, setToastMessage]);
 

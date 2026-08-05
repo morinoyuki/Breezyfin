@@ -61,7 +61,8 @@ Run these before packaging a release candidate:
 
 ### Playback/path validation
 
-- None.
+- Multi-channel audio (5.1/7.1 EAC3, AC3, AAC) sources must no longer DirectPlay to webOS. Verify the playback diagnostics show `TranscodeReasons` containing `AudioChannelsNotSupported` and the audio is downmixed to stereo without missing dialogue or surround content. Confirm `Settings -> Capabilities -> Max Audio Channels` reads `2 ch` after a capability probe refresh. Run `npm run test -- --watch=false --runInBand playback` to confirm the updated `playbackProfileBuilder`, `playbackApi`, `playbackSelection`, and `sourceNegotiation` expectations still pass.
+- When the codec profile constraint is bypassed (e.g., Jellyfin returns `SupportsDirectPlay: true` for a 5.1 source), the client-side `attemptAudioDownmixEnforcement` must trigger a re-fetch with `forceTranscoding: true`. Confirm in playback diagnostics that an `audio-downmix` stage entry with `reason: multi-channel-audio-needs-downmix` is recorded and that the resulting `TranscodingUrl` contains a `MaxAudioChannels` query parameter `<= 2`.
 
 ### Navigation/focus validation
 

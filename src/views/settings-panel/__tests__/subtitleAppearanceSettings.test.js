@@ -47,9 +47,9 @@ describe('subtitle appearance settings', () => {
 		expect(BITMAP_SUBTITLE_RENDERER_OPTIONS.map((option) => option.value))
 			.toEqual(['auto', 'libbitsub', 'libpgs', 'burn-in']);
 		expect(SUBTITLE_OVERLAY_WEIGHT_OPTIONS).toEqual([
-			{value: 'regular', label: 'Regular'},
-			{value: 'bold', label: 'Bold (Default)'},
-			{value: 'black', label: 'Black'}
+			{value: 'regular', label: '常规'},
+			{value: 'bold', label: '粗体（默认）'},
+			{value: 'black', label: '黑色'}
 		]);
 		expect(SUBTITLE_OVERLAY_TEXT_COLOR_OPTIONS.map((option) => option.value))
 			.toEqual(['white', 'warmWhite', 'yellow', 'black']);

@@ -17,7 +17,7 @@ const CACHE_TTL_MS = 5 * 60 * 1000;
 const CALENDAR_RANGE_DAYS = 90;
 const CALENDAR_FILTER_TABS = Object.freeze([
 	{id: 'all', label: 'All'},
-	{id: 'movies', label: 'Movies'},
+	{id: 'movies', label: '电影'},
 	{id: 'series', label: 'Series'}
 ]);
 const EMPTY_MESSAGES = Object.freeze({
@@ -177,8 +177,8 @@ const CalendarPanel = ({
 				});
 				if (requestId !== requestIdRef.current) return;
 				if (response?.available !== true) {
-					reportProviderFailure('Calendar', response);
-					const message = response?.problemDetails?.detail || 'Calendar providers are unavailable.';
+					reportProviderFailure('日历', response);
+					const message = response?.problemDetails?.detail || '日历提供者不可用。';
 					if (append) setPaginationError(message);
 					else setInitialError(message);
 					return;
@@ -218,8 +218,8 @@ const CalendarPanel = ({
 				});
 			} catch (error) {
 				if (requestId !== requestIdRef.current) return;
-				reportProviderFailure('Calendar', error);
-				const message = error?.problemDetails?.detail || 'Calendar providers are unavailable.';
+				reportProviderFailure('日历', error);
+				const message = error?.problemDetails?.detail || '日历提供者不可用。';
 				if (append) setPaginationError(message);
 				else setInitialError(message);
 			} finally {
@@ -319,7 +319,7 @@ const CalendarPanel = ({
 	return (
 		<IntegrationPanelLayout
 			{...rest}
-			title="Calendar"
+			title="日历"
 			activeSection="calendar"
 			isActive={isActive}
 			toolbarActions={providerShell.toolbarActions}
@@ -345,7 +345,7 @@ const CalendarPanel = ({
 				</div>
 			) : null}
 			{warnings.length > 0 ? (
-				<BodyText className={css.warning}>Results may be incomplete because one or more configured providers failed.</BodyText>
+				<BodyText className={css.warning}>由于一个或多个配置的提供商失败，结果可能不完整。</BodyText>
 			) : null}
 			{groupedRows.map((row, index) => (
 				<MediaRow
@@ -361,13 +361,13 @@ const CalendarPanel = ({
 				<section className={css.feedState}>
 					<BodyText>{paginationError}</BodyText>
 					<PanelActionButton spotlightId="calendar-pagination-retry" onClick={loadNextPage}>
-						Retry
+						重试
 					</PanelActionButton>
 				</section>
 			) : null}
 			{hasMore && !paginationError ? (
 				<PanelActionButton spotlightId="calendar-load-more" disabled={loadingMore} onClick={loadNextPage}>
-					{loadingMore ? 'Loading...' : 'Load More'}
+					{loadingMore ? '加载中...' : 'Load More'}
 				</PanelActionButton>
 			) : null}
 			<ProviderItemPopup

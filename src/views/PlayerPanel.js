@@ -142,7 +142,7 @@ const PlayerPanel = ({
 	} = useTrackPreferences();
 
 	const [loading, setLoading] = useState(true);
-	const [loadingStatusMessage, setLoadingStatusMessage] = useState('Loading...');
+	const [loadingStatusMessage, setLoadingStatusMessage] = useState('加载中...');
 	const [error, setError] = useState(null);
 	const [playing, setPlaying] = useState(false);
 	const [currentTime, setCurrentTime] = useState(0);
@@ -432,7 +432,7 @@ const PlayerPanel = ({
 			}
 		});
 		setLoading(true);
-		setLoadingStatusMessage('Restarting stream...');
+		setLoadingStatusMessage('正在重启串流...');
 		try {
 			await handleStop();
 		} catch (fallbackError) {

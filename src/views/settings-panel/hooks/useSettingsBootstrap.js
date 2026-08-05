@@ -192,7 +192,7 @@ export const useSettingsBootstrap = ({
 				homeRowOrder: resolvedOrder
 			});
 		} catch (error) {
-			console.error('Failed to load settings:', error);
+			console.error('加载设置失败：', error);
 		}
 	}, [assSubtitleRendererOptions, bitmapSubtitleRendererOptions, normalizeCapabilityProbeRefreshDaysSetting, setSettings]);
 
@@ -206,7 +206,7 @@ export const useSettingsBootstrap = ({
 			setServerInfo(server);
 			setUserInfo(user);
 		} catch (error) {
-			console.error('Failed to load server info:', error);
+			console.error('加载服务器信息失败：', error);
 		} finally {
 			setLoading(false);
 		}
@@ -216,7 +216,7 @@ export const useSettingsBootstrap = ({
 		try {
 			setSavedServers(jellyfinService.getSavedServers() || []);
 		} catch (error) {
-			console.error('Failed to fetch saved servers:', error);
+			console.error('获取已保存服务器失败：', error);
 		}
 	}, []);
 

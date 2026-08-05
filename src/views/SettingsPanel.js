@@ -386,7 +386,7 @@ const SettingsPanel = ({
 
 		return (
 			<Panel {...rest}>
-				<Header title="Settings" />
+				<Header title="设置" />
 				<SettingsToolbar
 					isActive={isActive}
 					{...toolbarActions}

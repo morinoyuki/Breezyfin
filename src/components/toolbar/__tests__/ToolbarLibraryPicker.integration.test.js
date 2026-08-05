@@ -41,6 +41,6 @@ describe('ToolbarLibraryPicker focus', () => {
 		);
 
 		expect(await screen.findByText('Movies')).toBeTruthy();
-		expect(screen.getByRole('region', {name: 'Library selection'})).toBeTruthy();
+		expect(screen.getByRole('region', {name: '媒体库选择'})).toBeTruthy();
 	});
 });
